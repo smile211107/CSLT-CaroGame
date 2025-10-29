@@ -1,0 +1,7 @@
+﻿  gameplay.cpp
+E:\coding 25-26\CSLT\caro_oop\caro_oop\gameplay.cpp(33,21): warning C4834: discarding return value of function with [[nodiscard]] attribute
+E:\coding 25-26\CSLT\caro_oop\caro_oop\gameplay.cpp(35,23): warning C4834: discarding return value of function with [[nodiscard]] attribute
+E:\coding 25-26\CSLT\caro_oop\caro_oop\gameplay.cpp(36,20): warning C4834: discarding return value of function with [[nodiscard]] attribute
+  main.cpp
+  Generating Code...
+  caro_oop.vcxproj -> E:\coding 25-26\CSLT\caro_oop\x64\Debug\caro_oop.exe
