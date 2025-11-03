@@ -1,0 +1,47 @@
+# Visual Studio temporary files
+.vs/
+*.db
+*.opendb
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Compiled Object files
+*.obj
+*.pch
+*.pdb
+*.idb
+*.ipch
+
+# Build results
+Debug/
+Release/
+x64/
+x86/
+build/
+out/
+bin/
+obj/
+
+# Logs
+*.log
+*.tlog
+
+# SFML / C++ cache
+*.cache
+*.tmp
+
+# Others
+*.ilk
+*.ncb
+*.sdf
+*.dbmdl
+*.aps
+*.res
+
+# Ignore executables
+*.exe
+*.dll
+*.lib
+*.exp
