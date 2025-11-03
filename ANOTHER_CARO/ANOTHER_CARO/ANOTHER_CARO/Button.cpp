@@ -7,6 +7,7 @@ Button::Button(const std::string& text, sf::Font& font,
     // SỬA LỖI QUAN TRỌNG: Khởi tạo buttonText (sf::Text) ở đây
     : buttonText(font, text, 24)
 {
+    isSelected = false;
     // --- Cài đặt Shape ---
     this->buttonShape.setSize(sizeShape);
     this->buttonShape.setFillColor(sf::Color(255, 255, 255)); // Nền trắng mờ
@@ -46,8 +47,25 @@ void Button::update(sf::Vector2f mousePos) {
     else {
         this->buttonShape.setFillColor(sf::Color(255, 255, 255, 400)); // Mờ lại
     }
+    if (isMouseOver(mousePos))
+    {
+        buttonShape.setFillColor(sf::Color(255, 255, 255, 1000));
+    }
+    // Ưu tiên 2: Được chọn bằng bàn phím
+    else if (isSelected)
+    {
+        buttonShape.setFillColor(sf::Color(255, 255, 255, 1000));
+    }
+    // Mặc định
+    else
+    {
+        buttonShape.setFillColor(sf::Color(255, 255, 255, 400));
+    }
 }
-
+void Button::setSelected(bool selected)
+{
+    isSelected = selected;
+}
 void Button::render(sf::RenderTarget& target) const {
     target.draw(this->buttonShape);
     target.draw(this->buttonText);

@@ -167,45 +167,44 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
 
     cursorShape.setSize(sf::Vector2f(cellSize-10, CURSOR_THICKNESS ));
     cursorShape.setFillColor(sf::Color::Blue);
-    
-    //updateScoreText(); // Cập nhật hiển thị điểm
 
     newGame();
 }
 
 void Gameplay::updateCursorShapePosition(){
     cursorShape.setPosition({margin  + cursorX * cellSize + 10,margin  + cursorY * cellSize - CURSOR_THICKNESS });
-    cout << margin << " " << cursorY << " " << cellSize << " " << cursorX << " " << CURSOR_THICKNESS << '\n';
+    
 }
 
 void Gameplay::rebuildGraphicsFromLogic() {
   
     pieces.clear();
 
-    // Duyệt qua toàn bộ mảng logic
+ 
     for (int y = 0; y < BOARD_HEIGHT; ++y)
     {
         for (int x = 0; x < BOARD_WIDTH; ++x)
         {
-            // Nếu ô logic này có quân cờ (khác 0)
+          
             if (mainGameBoard[y][x] != 0)
             {
                 std::unique_ptr<sf::Sprite> pieceSprite;
                 if (mainGameBoard[y][x] == 1)
                     pieceSprite = std::make_unique<sf::Sprite>(*(this->textureXIcon));
-                else // == 2
+                else 
                     pieceSprite = std::make_unique<sf::Sprite>(*(this->textureOIcon));
 
                 
                 pieceSprite->setPosition({ y * cellSize, x * cellSize });
 
-                // Thêm vào danh sách vẽ
+
                 pieces.push_back(std::move(pieceSprite));
             }
         }
     }
 }
 void Gameplay::newGame() {
+    pieces.clear();
     for (int i = 0; i < BOARD_HEIGHT; ++i)
     {
         for (int j = 0; j < BOARD_WIDTH; ++j)
@@ -232,66 +231,73 @@ void Gameplay::handleEvent(const sf::Event& event) {
        
         if (!isGameOver)
         {
-            // --- Xử lý di chuyển (A, S, D, W) ---
-            // Lưu ý: Dùng keyEvent->code thay vì event.key.code
+           
             if (key->scancode == sf::Keyboard::Scancode::Escape) window.close();
             if (key->scancode == sf::Keyboard::Scancode::W) 
             {
-                cout << "w/n";
+               
                 --cursorY;
-                cursorY = (cursorY == 0)?12: cursorY; 
+                cursorY = (cursorY == 0)? 12: cursorY; 
+                updateCursorShapePosition();
+              
             }
-            else if (key->scancode == sf::Keyboard::Scancode::S) // Xuống
+            else if (key->scancode == sf::Keyboard::Scancode::S) 
             {
-                cout << "s/n";
+             
                 ++cursorY;
                 cursorY = (cursorY == 13) ? 1 : (cursorY);
+                updateCursorShapePosition();
+              
             }
-            else if (key->scancode == sf::Keyboard::Scancode::A) // Trái
+            else if (key->scancode == sf::Keyboard::Scancode::A) 
             {
-                cout << "a/n";
+              
                 --cursorX;
-                cursorX = (cursorX == 0) ? 12 : (cursorX);
+                cursorX = (cursorX == -1) ? 11 : (cursorX);
+                updateCursorShapePosition();
+             
             }
-            else if (key->scancode == sf::Keyboard::Scancode::D) // Phải
+            else if (key->scancode == sf::Keyboard::Scancode::D) 
             {
-                cout << "d/n";
+              
                 ++cursorX;
-                cursorX = (cursorX == 13) ? 1 : cursorX;
+                cursorX = (cursorX == 12) ? 0 : cursorX;
+                updateCursorShapePosition();
+              
             }
             else if (key->scancode == sf::Keyboard::Scancode::Enter ||
                 key->scancode == sf::Keyboard::Scancode::Space)
             {
-                // Lấy vị trí (hàng, cột) từ con trỏ
+               
                 int y = cursorY;
                 int x = cursorX;
 
-                // Kiểm tra xem ô này có trống không
+              
                 if (mainGameBoard[y][x] == 0)
                 {
-                    // 1. Cập nhật logic: Đặt cờ
+                   
                     mainGameBoard[y][x] = currentPlayer;
 
-                    // 2. Cập nhật đồ họa: Tạo sprite mới
+                   
                     std::unique_ptr<sf::Sprite> newPiece;
                    
                     newPiece = std::make_unique<sf::Sprite>(*(((currentPlayer == 1) ? textureXIcon : textureOIcon)));
                    
                     newPiece->setPosition({margin + 20 + x * cellSize,margin + 20 + (y-1) * cellSize -CURSOR_THICKNESS });
-                    pieces.push_back(std::move(newPiece)); // Thêm vào danh sách vẽ
+                    pieces.push_back(std::move(newPiece)); 
 
                     cout << checkWin(y, x, currentPlayer) << '\n';
                     if (checkWin(y, x, currentPlayer) > 0)
                     {
                         isGameOver = true;
 
-                        // MỚI: Cập nhật điểm số
+                     
                         if (currentPlayer == 1)
                             player1Score++;
                         else
                             player2Score++;
 
-                        //updateScoreText(); // Cập nhật chuỗi hiển thị
+                    
                        
                         std::cout << "--- Player " << currentPlayer << " WINS! ---" << std::endl;
                         std::cout << "Nhan 'N' de choi van moi." << std::endl; 
@@ -303,34 +309,37 @@ void Gameplay::handleEvent(const sf::Event& event) {
                         currentPlayer = (currentPlayer == 1) ? 2 : 1;
                     }
                 }
+
              
             }
+          
 
-        updateCursorShapePosition();
+      
         }
     }
    
    
 }
 
-void Gameplay::update(sf::Vector2f mousePos) {
-}
 
+void Gameplay::update(sf::Vector2f mousePos) {
+    updateCursorShapePosition();
+}
 void Gameplay::render(sf::RenderTarget& target) {
    
     target.draw(*(this->gameplayBackgroundSprite));
     target.draw(*(this->spriteBoard));
-    //target.draw(cursorShape);
+
 
     for (const auto& piece : pieces)
     {
-        target.draw(*(piece)); // Phải là target
+        target.draw(*(piece)); 
     }
 
-    // SỬA ĐÚNG:
+   
     if (!isGameOver)
     {
-        target.draw(cursorShape); // Phải là target
+        target.draw(cursorShape); 
     }
 
 }

@@ -1,8 +1,9 @@
 ﻿#pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Button.h"
 #include <string>
-
+#include <memory>
 // Độ dài tên tối đa, nên được định nghĩa trong file header
 const int MAX_NAME_LENGTH = 15;
 
@@ -14,8 +15,8 @@ private:
     sf::Text text;
     std::string currentText;
     bool isActive;
-
-    // Ghi đè hàm draw() từ sf::Drawable
+    std::vector<Button*> menuButtons; // Danh sách các con trỏ tới tất cả các nút
+    int selectedButtonIndex;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 public:

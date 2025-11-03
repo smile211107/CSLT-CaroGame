@@ -1,6 +1,6 @@
 ﻿#include "NewGameState.h"
 #include <iostream>
-
+#include <memory>
 const sf::Vector2f PLAYER_BUTTON_SIZE = { 400.f, 50.f };
 
 NewGameState::NewGameState(sf::RenderWindow& window, sf::Font& font)
@@ -15,11 +15,16 @@ NewGameState::NewGameState(sf::RenderWindow& window, sf::Font& font)
     buttonBack("Back", font, PLAYER_BUTTON_SIZE,
         { window.getSize().x / 2.0f, window.getSize().y * 0.7f })
 {
+    this->menuButtons.push_back(&this->buttonTwoPlayer);
+    this->menuButtons.push_back(&this->buttonThreePlayer);
+    this->menuButtons.push_back(&this->buttonBack);
+    this->selectedButtonIndex = 0;
+    this->menuButtons[this->selectedButtonIndex]->setSelected(true);
+  
     this->nextState = GameState::NewGame;
-    std::cout << "Da vao trang New Game (Player Select)!" << std::endl;
     this->backgroundTexture = std::make_unique<sf::Texture>();
 
-    // 2. Tải file (dùng -> thay vì .)
+ 
     if (!this->backgroundTexture->loadFromFile("Assets/Image/background.png")) {
         std::cout << "khong the mo menubackground" << '\n';
     }
@@ -39,6 +44,43 @@ GameState NewGameState::getNextState() {
 }
 
 void NewGameState::handleEvent(const sf::Event& event) {
+    if (const auto* key = event.getIf<sf::Event::KeyPressed>()) {
+
+        int prevIndex = this->selectedButtonIndex;
+
+        if (key->scancode == sf::Keyboard::Scancode::W || key->scancode == sf::Keyboard::Scancode::Up) {
+            // Di chuyển LÊN: Giảm chỉ mục (cuộn vòng lại cuối nếu ở đầu)
+            this->selectedButtonIndex = (this->selectedButtonIndex - 1 + this->menuButtons.size()) % this->menuButtons.size();
+        }
+        else if (key->scancode == sf::Keyboard::Scancode::S || key->scancode == sf::Keyboard::Scancode::Down) {
+            // Di chuyển XUỐNG: Tăng chỉ mục (cuộn vòng lại đầu nếu ở cuối)
+            this->selectedButtonIndex = (this->selectedButtonIndex + 1) % this->menuButtons.size();
+        }
+        else if (key->scancode == sf::Keyboard::Scancode::Enter) {
+            // Kích hoạt nút đang được chọn
+            // Chúng ta mô phỏng một sự kiện nhấp chuột tại vị trí nút đó (hoặc gọi một hàm click nội bộ)
+            Button* currentButton = this->menuButtons[this->selectedButtonIndex];
+
+            // XỬ LÝ CLICK DỰA TRÊN CHỈ MỤC
+            if (currentButton == &this->buttonTwoPlayer) {
+                this->nextState = GameState::TwoPlayer;
+            }
+            else if (currentButton == &this->buttonThreePlayer) {
+                this->nextState = GameState::MainMenu;
+            }
+            else if (currentButton == &this->buttonBack) {
+                this->nextState = GameState::MainMenu;
+            }
+
+        }
+       
+
+        // Cập nhật trạng thái hiển thị của nút (chỉ khi chỉ mục thay đổi)
+        if (prevIndex != this->selectedButtonIndex) {
+            this->menuButtons[prevIndex]->setSelected(false);
+            this->menuButtons[this->selectedButtonIndex]->setSelected(true);
+        }
+    }
     if (const auto* mouseEvent = event.getIf<sf::Event::MouseButtonPressed>()) {
         if (mouseEvent->button == sf::Mouse::Button::Left) {
             sf::Vector2f mousePos = this->window.mapPixelToCoords({ mouseEvent->position.x, mouseEvent->position.y });

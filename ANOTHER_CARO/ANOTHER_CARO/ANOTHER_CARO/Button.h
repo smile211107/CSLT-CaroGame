@@ -16,10 +16,12 @@ public:
     void update(sf::Vector2f mousePos);
     void render(sf::RenderTarget& target) const;
     sf::Vector2f getPosition() const;
+    void setSelected(bool selected);
 
 private:
     void updateOrigin();
 
+    bool isSelected;
    
     sf::RectangleShape buttonShape;
     sf::Text buttonText;

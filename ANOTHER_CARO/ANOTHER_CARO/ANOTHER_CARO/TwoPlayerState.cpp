@@ -4,10 +4,9 @@
 #include <iostream>
 #include <memory>
 using namespace std;
-// 1. XÓA các hằng số hard-coded
+
 const sf::Vector2f PLAYER_BUTTON_SIZE = { 400.f, 50.f };
 
-// Kích thước ô nhập liệu
 const sf::Vector2f INPUT_BOX_SIZE = { 450.0f, 60.0f };
 
 TwoPlayerState::TwoPlayerState(sf::RenderWindow& window, sf::Font& font)
@@ -41,13 +40,7 @@ TwoPlayerState::TwoPlayerState(sf::RenderWindow& window, sf::Font& font)
 {
     
     sf::FloatRect textBounds = this->textUser1.getLocalBounds();
-    /*textBounds = this->textUser1.getLocalBounds();
-    this->textUser1.setOrigin({ textBounds.position.x + textBounds.size.x / 2.f,
-        textBounds.position.y + textBounds.size.y / 2.f });
-    textUser1.setPosition({ window.getSize().x / 2.0f,
-                           window.getSize().y * 0.4f });*/
-
-    //cout << textBounds.position.x << " " << window.getSize().x << endl;
+  
 
     
 

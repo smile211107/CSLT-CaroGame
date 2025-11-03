@@ -92,7 +92,7 @@ void Game::processEvents() {
 
 void Game::update() {
     sf::Vector2f mousePos = this->window.mapPixelToCoords(sf::Mouse::getPosition(this->window));
-   
+ 
     this->currentState->update(mousePos);
 }
 

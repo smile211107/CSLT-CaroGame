@@ -32,6 +32,8 @@ private:
     std::unique_ptr<sf::Texture> gameplayBackgroundTexture;
     std::unique_ptr<sf::Sprite> gameplayBackgroundSprite;
     sf::Music backgroundMusic;
+    sf::Clock m_moveClock;
+    sf::Time m_moveThreshold;
 
     GameState nextState;
     int board[BOARD_HEIGHT][BOARD_WIDTH];

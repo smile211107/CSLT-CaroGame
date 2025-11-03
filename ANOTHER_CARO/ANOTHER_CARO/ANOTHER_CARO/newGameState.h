@@ -18,6 +18,8 @@ public:
 private:
     sf::RenderWindow& window;
     sf::Font& font;
+    std::vector<Button*> menuButtons; // Danh sách các con trỏ tới tất cả các nút
+    int selectedButtonIndex;
    
     Button buttonTwoPlayer;
     Button buttonThreePlayer;

@@ -1,5 +1,6 @@
 ﻿#include "PlayerNameInput.h"
 #include <iostream>
+#include <memory>
 
 // --- Triển khai Hàm Khởi tạo ---
 PlayerNameInput::PlayerNameInput(const sf::Vector2f& position, const sf::Vector2f& size, const sf::Font& font)

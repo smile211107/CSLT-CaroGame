@@ -26,10 +26,13 @@ private:
     sf::Font& font;
     std::vector<PlayerNameInput> nameInputs;
 
+    std::vector<Button*> menuButtons; // Danh sách các con trỏ tới tất cả các nút
+    int selectedButtonIndex;
+
     std::unique_ptr<sf::Texture>    twoPlayerBackgroundTexture;
     std::unique_ptr<sf::Sprite>     twoPlayerBackgroundSprite;
 
-
+    
     sf::Text textUser1;
     sf::Text textUser2;
     

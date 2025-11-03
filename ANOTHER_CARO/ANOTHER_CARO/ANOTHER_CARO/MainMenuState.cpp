@@ -4,6 +4,7 @@
 #include "NewGameState.h" 
 #include "State.h"
 #include <iostream>
+#include <memory>
 
 // 1. XÓA các hằng số hard-coded (CENTER_X, START_Y)
 const sf::Vector2f BUTTON_SIZE = { 400.0F, 60.f };
@@ -30,6 +31,17 @@ MainMenuState::MainMenuState(sf::RenderWindow& window, sf::Font& font)
 
     
 {
+    this->menuButtons.push_back(&this->buttonNewGame);
+    this->menuButtons.push_back(&this->buttonLoadGame);
+    this->menuButtons.push_back(&this->buttonTutorials);
+    this->menuButtons.push_back(&this->buttonAboutUs);
+    this->menuButtons.push_back(&this->buttonSettings);
+    this->menuButtons.push_back(&this->buttonExit);
+    this->selectedButtonIndex = 0;
+    this->menuButtons[this->selectedButtonIndex]->setSelected(true); 
+
+    
+
     this->nextState = GameState::MainMenu;
     this->menuBackgroundTexture = std::make_unique<sf::Texture>();
 
@@ -56,6 +68,38 @@ GameState MainMenuState::getNextState() {
 }
 
 void MainMenuState::handleEvent(const sf::Event& event) {
+    if (const auto* key = event.getIf<sf::Event::KeyPressed>()) {
+
+        int prevIndex = this->selectedButtonIndex;
+
+        if (key->scancode == sf::Keyboard::Scancode::W || key->scancode == sf::Keyboard::Scancode::Up) {
+            // Di chuyển LÊN: Giảm chỉ mục (cuộn vòng lại cuối nếu ở đầu)
+            selectedButtonIndex = (selectedButtonIndex - 1 + menuButtons.size()) % menuButtons.size();
+        }
+        else if (key->scancode == sf::Keyboard::Scancode::S || key->scancode == sf::Keyboard::Scancode::Down) {
+            // Di chuyển XUỐNG: Tăng chỉ mục (cuộn vòng lại đầu nếu ở cuối)
+            selectedButtonIndex = (selectedButtonIndex + 1) % menuButtons.size();
+        }
+        else if (key->scancode == sf::Keyboard::Scancode::Enter) {
+          
+            Button* currentButton = menuButtons[selectedButtonIndex];
+
+            // XỬ LÝ CLICK DỰA TRÊN CHỈ MỤC
+            if (currentButton == &this->buttonNewGame) {
+                this->nextState = GameState::NewGame;
+            }
+            else if (currentButton == &this->buttonExit) {
+                this->nextState = GameState::Exiting;
+            }
+           
+        }
+
+       
+        if (prevIndex != this->selectedButtonIndex) {
+            this->menuButtons[prevIndex]->setSelected(false);
+            this->menuButtons[this->selectedButtonIndex]->setSelected(true);
+        }
+    }
     if (const auto* mouseEvent = event.getIf<sf::Event::MouseButtonPressed>()) {
 
      
@@ -87,6 +131,7 @@ void MainMenuState::handleEvent(const sf::Event& event) {
             }
         }
     }
+   
 }
 
 void MainMenuState::update(sf::Vector2f mousePos) {
@@ -96,6 +141,8 @@ void MainMenuState::update(sf::Vector2f mousePos) {
     this->buttonAboutUs.update(mousePos);
     this->buttonSettings.update(mousePos);
     this->buttonExit.update(mousePos);
+
+  
 }
 
 void MainMenuState::render(sf::RenderTarget& target) {

@@ -22,7 +22,7 @@ private:
     sf::Font& font;
     std::unique_ptr<sf::Texture> menuBackgroundTexture;
     std::unique_ptr<sf::Sprite> menuBackgroundSprite;
-
+    std::vector<Button*> menuButtons;
     
     Button buttonNewGame;
     Button buttonLoadGame;
@@ -30,6 +30,7 @@ private:
     Button buttonAboutUs;
     Button buttonSettings;
     Button buttonExit;
+    int selectedButtonIndex;
 
     // Biến để lưu "trang" tiếp theo
     GameState nextState;
