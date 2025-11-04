@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Debug\\TwoPlayerState.obj",
+            "outputs": [
+                "x64\\Debug\\TwoPlayerState.h_4A8941CFFBE07299.ifc.dt.module.json",
+                "x64\\Debug\\TwoPlayerState.h_4A8941CFFBE07299.ifc.dt.d.json",
+                "x64\\Debug\\TwoPlayerState.h.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "E:\\coding 25-26\\CSLT\\CSLT-CaroGame-041125\\ANOTHER_CARO\\TwoPlayerState.h",
+                    "source-path": "e:\\coding 25-26\\cslt\\cslt-carogame-041125\\another_caro\\twoplayerstate.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}
