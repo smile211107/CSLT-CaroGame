@@ -6,7 +6,7 @@ GuideState::GuideState() :
     guideBackground(guidebgTexture),
     okButton(okButtonTexture)
 {
-    guidebgTexture.loadFromFile("assets\\about-background.png");
+    guidebgTexture.loadFromFile("assets\\about-background-vn.png");
     okButtonTexture.loadFromFile("assets\\button\\return-button-vn.png");
 
     guideBackground.setTexture(guidebgTexture);
@@ -50,7 +50,15 @@ void GuideState::handleInput(const Event& event, RenderWindow& window) {
     }
 }
 
-void GuideState::update(Time dt) {
+void GuideState::update(Time dt, RenderWindow& window) {
+    Vector2f mousePos = window.mapPixelToCoords(Mouse::getPosition(window));
+
+    if (okButton.getGlobalBounds().contains(mousePos)) {
+        okButton.setScale({ m_buttonScaleHover, m_buttonScaleHover });
+    }
+    else {
+        okButton.setScale({ m_buttonScaleNormal, m_buttonScaleNormal });
+    }
 }
 
 void GuideState::draw(RenderWindow& window) {

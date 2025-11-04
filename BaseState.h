@@ -15,7 +15,7 @@ public:
 	virtual ~BaseState() = default;
 
 	virtual void handleInput(const Event& event, RenderWindow& window) = 0;
-	virtual void update(Time dt) = 0;
+	virtual void update(Time dt, RenderWindow& window) = 0;
 	virtual void draw(RenderWindow& window) = 0;
 
 	StateType getNextState() {

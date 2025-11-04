@@ -124,8 +124,49 @@ void MainMenuState::handleInput(const Event& event, RenderWindow& window) {
     }
 }
 
-void MainMenuState::update(Time dt) {
+void MainMenuState::update(Time dt, RenderWindow& window) {
+    Vector2f mousePos = window.mapPixelToCoords(Mouse::getPosition(window));
 
+    if (newGameButton.getGlobalBounds().contains(mousePos)) {
+        newGameButton.setScale({ m_buttonScaleHover, m_buttonScaleHover });
+    }
+    else {
+        newGameButton.setScale({ m_buttonScaleNormal, m_buttonScaleNormal });
+    }
+    if (loadGameButton.getGlobalBounds().contains(mousePos)) {
+        loadGameButton.setScale({ m_buttonScaleHover, m_buttonScaleHover });
+    }
+    else {
+        loadGameButton.setScale({ m_buttonScaleNormal, m_buttonScaleNormal });
+    }
+
+    if (settingsButton.getGlobalBounds().contains(mousePos)) {
+        settingsButton.setScale({ m_buttonScaleHover, m_buttonScaleHover });
+    }
+    else {
+        settingsButton.setScale({ m_buttonScaleNormal, m_buttonScaleNormal });
+    }
+
+    if (tutorialButton.getGlobalBounds().contains(mousePos)) {
+        tutorialButton.setScale({ m_buttonScaleHover, m_buttonScaleHover });
+    }
+    else {
+        tutorialButton.setScale({ m_buttonScaleNormal, m_buttonScaleNormal });
+    }
+
+    if (aboutUsButton.getGlobalBounds().contains(mousePos)) {
+        aboutUsButton.setScale({ m_buttonScaleHover, m_buttonScaleHover });
+    }
+    else {
+        aboutUsButton.setScale({ m_buttonScaleNormal, m_buttonScaleNormal });
+    }
+
+    if (quitButton.getGlobalBounds().contains(mousePos)) {
+        quitButton.setScale({ m_buttonScaleHover, m_buttonScaleHover });
+    }
+    else {
+        quitButton.setScale({ m_buttonScaleNormal, m_buttonScaleNormal });
+    }
 }
 
 void MainMenuState::draw(RenderWindow& window) {

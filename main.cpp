@@ -34,7 +34,7 @@ int main()
 
             currentState->handleInput(*event, window);
         }
-        currentState->update(dt);
+        currentState->update(dt, window);
 
         StateType next = currentState->getNextState();
         if (next != StateType::None) {
