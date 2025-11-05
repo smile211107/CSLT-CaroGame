@@ -2,8 +2,8 @@
 #include "GameState.h"
 #include "Game.h"
 #include "Gameplay.h"
-#include "Button.h" 
-#include "State.h"
+
+#include "PlayerNameInput.h"
 #include <iostream>
 #include <vector>
 #include <conio.h>
@@ -11,6 +11,7 @@
 #include <sfml/Graphics.hpp>
 #include <SFML/Audio.hpp>
 using namespace std;
+int turn = 0;
 const int margin = 30, playerSize = 50;
 vector<pair<int, int>> track;
 unsigned char mainGameBoard[13][13] = {
@@ -116,19 +117,24 @@ int checkWin(int y, int x, int checkNum)
 Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
     : window(window),
     font(font),
-    score1(font,"PLAYER 1: "+ to_string(player1Score),48),
-    score2(font,"PLAYER 2: " + to_string(player2Score),48)
+    score1(font,playerName[1] + ": " + to_string(player1Score), 48),
+    score2(font, playerName[2] + ": " + to_string(player2Score),48),
+    score3(font, playerName[3] + ": " + to_string(player3Score), 48)
    
 {
     
     this->nextState = GameState::Playing;
     this->textureCard1 = std::make_unique<sf::Texture>();
     this->textureCard2 = std::make_unique<sf::Texture>();
+    this->textureCard3 = std::make_unique<sf::Texture>();
     if (!textureCard1->loadFromFile("Assets/Image/player1-card.png")) {
         cout << "khong tai duoc card 1";
     }
     if (!textureCard2->loadFromFile("Assets/Image/player2-card.png")) {
         cout << "khong tai duoc card 2";
+    }
+    if (!textureCard3->loadFromFile("Assets/Image/player3-card.png")) {
+        cout << "khong tai duoc card 3";
     }
     if (!backgroundMusic.openFromFile("assets/mainaudio.mp3")) {
 
@@ -137,6 +143,7 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
    
     this->spriteCard1 = std::make_unique<sf::Sprite>(*(this->textureCard1));
     this->spriteCard2 = std::make_unique<sf::Sprite>(*(this->textureCard2));
+    this->spriteCard3 = std::make_unique<sf::Sprite>(*(this->textureCard3));
 
     sf::FloatRect spriteBounds = this->spriteCard1->getLocalBounds();
 
@@ -146,16 +153,24 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
     this->spriteCard2->setOrigin({ spriteBounds.position.x + spriteBounds.size.x / 2.0f,
                                      spriteBounds.position.y + spriteBounds.size.y / 2.0f });
 
+   spriteBounds = this->spriteCard3->getLocalBounds();
+    this->spriteCard3->setOrigin({ spriteBounds.position.x + spriteBounds.size.x / 2.0f,
+                                     spriteBounds.position.y + spriteBounds.size.y / 2.0f });
+
 
     this->spriteCard1->setPosition({ window.getSize().x * 0.75f,
                                      window.getSize().y * 0.1f });
 
     this->spriteCard2->setPosition({ window.getSize().x * 0.75f,
                                      window.getSize().y * 0.3f });
-    score1.setPosition({ window.getSize().x * 0.75f,
+    this->spriteCard3->setPosition({ window.getSize().x * 0.75f,
+                                     window.getSize().y * 0.5f });
+    score1.setPosition({ window.getSize().x * 0.65f,
                                      window.getSize().y * 0.1f });
-    score2.setPosition({ window.getSize().x * 0.75f,
+    score2.setPosition({ window.getSize().x * 0.65f,
                                     window.getSize().y * 0.3f });
+    score3.setPosition({ window.getSize().x * 0.65f,
+                                  window.getSize().y * 0.5f });
    
     backgroundMusic.setLooping(true);
     backgroundMusic.setVolume(50);
@@ -182,11 +197,16 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
 
     this->textureXIcon = std::make_unique<sf::Texture>();
     this->textureOIcon = std::make_unique<sf::Texture>();
+    this->textureVIcon = std::make_unique<sf::Texture>();
     if (!this->textureOIcon->loadFromFile("Assets/gameplay/o-icon.png")) {
         cout << "khong tai duoc icon o" << '\n';
 
     };
     if (!this->textureXIcon->loadFromFile("Assets/gameplay/x-icon.png")) {
+        cout << "khong tai duoc icon x" << '\n';
+
+    };
+    if (!this->textureVIcon->loadFromFile("Assets/gameplay/v-icon.png")) {
         cout << "khong tai duoc icon x" << '\n';
 
     };
@@ -204,33 +224,7 @@ void Gameplay::updateCursorShapePosition() {
 
 }
 
-void Gameplay::rebuildGraphicsFromLogic() {
 
-    pieces.clear();
-
-
-    for (int y = 0; y < BOARD_HEIGHT; ++y)
-    {
-        for (int x = 0; x < BOARD_WIDTH; ++x)
-        {
-
-            if (mainGameBoard[y][x] != 0)
-            {
-                std::unique_ptr<sf::Sprite> pieceSprite;
-                if (mainGameBoard[y][x] == 1)
-                    pieceSprite = std::make_unique<sf::Sprite>(*(this->textureXIcon));
-                else
-                    pieceSprite = std::make_unique<sf::Sprite>(*(this->textureOIcon));
-
-
-                pieceSprite->setPosition({ y * cellSize, x * cellSize });
-
-
-                pieces.push_back(std::move(pieceSprite));
-            }
-        }
-    }
-}
 void Gameplay::newGame() {
     pieces.clear();
     for (int i = 0; i < BOARD_HEIGHT; ++i)
@@ -240,7 +234,7 @@ void Gameplay::newGame() {
             mainGameBoard[i][j] = 0;
         }
     }
-    currentPlayer = 1;
+    currentPlayer = 0;
     isGameOver = 0;
 
     cursorY = BOARD_HEIGHT / 2;
@@ -296,20 +290,31 @@ void Gameplay::handleEvent(const sf::Event& event) {
             else if (key->scancode == sf::Keyboard::Scancode::Enter ||
                 key->scancode == sf::Keyboard::Scancode::Space)
             {
-
+                
                 int y = cursorY;
                 int x = cursorX;
 
 
                 if (mainGameBoard[y][x] == 0)
                 {
-
+                    currentPlayer = turn % gameMode;
+                    ++turn;
                     mainGameBoard[y][x] = currentPlayer;
 
 
                     std::unique_ptr<sf::Sprite> newPiece;
+                    if (currentPlayer == 0) {
+                        newPiece = std::make_unique<sf::Sprite>(*textureXIcon);
 
-                    newPiece = std::make_unique<sf::Sprite>(*(((currentPlayer == 1) ? textureXIcon : textureOIcon)));
+                    }
+                    else if (currentPlayer == 1) {
+                        newPiece = std::make_unique<sf::Sprite>(*textureOIcon);
+
+                    }
+                    else {
+                        newPiece = std::make_unique<sf::Sprite>(*textureVIcon);
+                    }
+                
 
                     newPiece->setPosition({ margin + 20 + x * cellSize,margin + 20 + (y - 1) * cellSize - CURSOR_THICKNESS });
                     pieces.push_back(std::move(newPiece));
@@ -320,31 +325,26 @@ void Gameplay::handleEvent(const sf::Event& event) {
                         isGameOver = true;
 
 
-                        if (currentPlayer == 1)
+                        if (currentPlayer == 0)
                         {
                             player1Score++;
-                            score1.setString("Player 1 " + to_string(player1Score));
+                            score1.setString(playerName[1] + ": " + to_string(player1Score));
 
                         }
                             
-                        else
+                        else if(currentPlayer == 1)
                         {
                             player2Score++;
-                            score2.setString("Player 2 " + to_string(player2Score));
+                            score2.setString(playerName[2] + ": " + to_string(player2Score));
                         }
-                            
-
-
-
-                        std::cout << "--- Player " << currentPlayer << " WINS! ---" << std::endl;
-                        std::cout << "Nhan 'N' de choi van moi." << std::endl;
+                        else {
+                            player3Score++;
+                            score3.setString(playerName[3] + ": " + to_string(player3Score));
+                        }
+              
                         newGame();
                     }
-                    else
-                    {
-
-                        currentPlayer = (currentPlayer == 1) ? 2 : 1;
-                    }
+                    
                 }
 
 
@@ -368,8 +368,10 @@ void Gameplay::render(sf::RenderTarget& target) {
     
     target.draw(*(this->spriteCard1));
     target.draw(*(this->spriteCard2));
+    if(gameMode == 3)  target.draw(*(this->spriteCard3));
     target.draw(score1);
     target.draw(score2);
+    if(gameMode == 3) target.draw(score3);
 
 
     for (const auto& piece : pieces)

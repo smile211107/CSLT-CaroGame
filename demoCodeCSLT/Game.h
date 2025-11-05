@@ -5,7 +5,7 @@
 #include "GamePlay.h"
 #include "State.h"
 #include <memory> // dung de khai bao con tro  unique_ptr
-
+extern int gameMode;
 class Game {
 public:
     Game();

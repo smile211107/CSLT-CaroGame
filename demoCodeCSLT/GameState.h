@@ -5,6 +5,7 @@ enum class GameState {
     NewGame,
     Settings,
     AboutUs,
+    Tutorials,
     TwoPlayer,
     ThreePlayer,
     Playing,

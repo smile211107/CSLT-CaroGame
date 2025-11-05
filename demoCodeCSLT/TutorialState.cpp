@@ -1,24 +1,23 @@
-﻿#include "AboutState.h"
-#include "Button.h"
+﻿#include "TutorialState.h"
 #include <iostream>
-using namespace std;
+
 const sf::Vector2f PLAYER_BUTTON_SIZE = { 400.f, 50.f };
 
-AboutState::AboutState(sf::RenderWindow& window, sf::Font& font)
+TutorialState::TutorialState(sf::RenderWindow& window, sf::Font& font)
     : window(window),
     font(font),
 
-
+   
     buttonBack("Back", font, PLAYER_BUTTON_SIZE,
         { window.getSize().x / 2.0f, window.getSize().y * 0.92f })
 {
-    this->nextState = GameState::AboutUs;
-        cout << "Da vao trang AboutUs!" << std::endl;
+    this->nextState = GameState::Tutorials;
+    std::cout << "Da vao trang Tutorial!" << std::endl;
     this->backgroundTexture = std::make_unique<sf::Texture>();
 
-  
-    if (!this->backgroundTexture->loadFromFile("Assets/image/about-background-vn.png")) {
-        cout << "khong the mo Aboutbackground" << '\n';
+   
+    if (!this->backgroundTexture->loadFromFile("Assets/image/tutorial-background-vn.png")) {
+        std::cout << "khong the mo tutorialbackground" << '\n';
     }
 
     this->backgroundSprite = std::make_unique<sf::Sprite>(*(this->backgroundTexture));
@@ -31,11 +30,11 @@ AboutState::AboutState(sf::RenderWindow& window, sf::Font& font)
     this->backgroundSprite->setScale(backgroundScale);
 }
 
-GameState AboutState::getNextState() {
+GameState TutorialState::getNextState() {
     return this->nextState;
 }
 
-void AboutState::handleEvent(const sf::Event& event) {
+void TutorialState::handleEvent(const sf::Event& event) {
     if (const auto* mouseEvent = event.getIf<sf::Event::MouseButtonPressed>()) {
         if (mouseEvent->button == sf::Mouse::Button::Left) {
             sf::Vector2f mousePos = this->window.mapPixelToCoords({ mouseEvent->position.x, mouseEvent->position.y });
@@ -48,11 +47,11 @@ void AboutState::handleEvent(const sf::Event& event) {
     }
 }
 
-void AboutState::update(sf::Vector2f mousePos) {
+void TutorialState::update(sf::Vector2f mousePos) {
     this->buttonBack.update(mousePos);
 }
 
-void AboutState::render(sf::RenderTarget& target) {
+void TutorialState::render(sf::RenderTarget& target) {
     target.draw(*(this->backgroundSprite));
     this->buttonBack.render(target);
 }

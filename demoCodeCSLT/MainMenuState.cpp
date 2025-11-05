@@ -84,6 +84,12 @@ void MainMenuState::handleEvent(const sf::Event& event) {
             else if (currentButton == &this->buttonExit) {
                 this->nextState = GameState::Exiting;
             }
+            else if (currentButton == &this->buttonAboutUs) {
+                this->nextState = GameState::AboutUs;
+            }
+            else if (currentButton == &this->buttonTutorials) {
+                this->nextState = GameState::Tutorials;
+            }
 
         }
 
@@ -93,38 +99,6 @@ void MainMenuState::handleEvent(const sf::Event& event) {
             this->menuButtons[this->selectedButtonIndex]->setSelected(true);
         }
     }
-    if (const auto* mouseEvent = event.getIf<sf::Event::MouseButtonPressed>()) {
-
-
-        if (mouseEvent->button == sf::Mouse::Button::Left) {
-
-
-            sf::Vector2f mousePos = this->window.mapPixelToCoords({ mouseEvent->position.x, mouseEvent->position.y });
-
-            if (this->buttonNewGame.isMouseOver(mousePos)) {
-                std::cout << "Yeu cau chuyen sang New Game!" << std::endl;
-
-
-                this->nextState = GameState::NewGame;
-            }
-            if (this->buttonLoadGame.isMouseOver(mousePos)) {
-                std::cout << "Chua lam trang Load Game!" << std::endl;
-            }
-            if (this->buttonTutorials.isMouseOver(mousePos)) {
-                std::cout << "Chua lam trang Tutorials" << std::endl;
-            }
-            if (this->buttonAboutUs.isMouseOver(mousePos)) {
-                std::cout << "Chua lam trang About Us" << std::endl;
-            }
-            if (this->buttonSettings.isMouseOver(mousePos)) {
-                std::cout << "Chua lam trang Settings" << std::endl;
-            }
-            if (this->buttonExit.isMouseOver(mousePos)) {
-                this->nextState = GameState::Exiting;
-            }
-        }
-    }
-
 }
 
 void MainMenuState::update(sf::Vector2f mousePos) {

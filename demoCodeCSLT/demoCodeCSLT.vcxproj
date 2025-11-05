@@ -147,6 +147,7 @@
     <ClCompile Include="PlayerNameInput.h" />
     <ClCompile Include="ThreePlayerInput.cpp" />
     <ClCompile Include="ThreePlayerState.h" />
+    <ClCompile Include="TutorialState.cpp" />
     <ClCompile Include="TwoPlayerState.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +155,7 @@
     <ClInclude Include="GamePlay.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="TutorialState.h" />
     <ClInclude Include="TwoPlayerState.h" />
   </ItemGroup>
   <ItemGroup>

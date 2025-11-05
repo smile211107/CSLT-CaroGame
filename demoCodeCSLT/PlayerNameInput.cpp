@@ -1,7 +1,8 @@
 #include "PlayerNameInput.h"
 #include <iostream>
 #include <memory>
-
+std::string playerName[4];
+int dem = 0;
 PlayerNameInput::PlayerNameInput(const sf::Vector2f& position, const sf::Vector2f& size, const sf::Font& font)
     :text(font, "", 24)
 {
@@ -62,7 +63,7 @@ void PlayerNameInput::type(uint32_t unicode)
     }
     else if (unicode == 13 || unicode == 10) //  Enter/Return
     {
-        // chua code
+        playerName[++dem] = currentText;
     }
     else if (unicode < 128) // in ky tu thong thuong
     {

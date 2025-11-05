@@ -5,6 +5,7 @@
 #include "TwoPlayerState.h"
 #include "AboutState.h"
 #include "ThreePlayerState.h"
+#include "TutorialState.h"
 #include<sfml/Graphics.hpp>
 #include<sfml/Audio.hpp>
 #include<sfml/Network.hpp>
@@ -13,14 +14,14 @@
 #include <iostream>
 #include <memory>
 
-
+int gameMode = 0;
 Game::Game()
 
     : window(sf::VideoMode::getDesktopMode(), "Caro Game OOP", sf::State::Fullscreen)
  
 {
 
-    this->window.setFramerateLimit(60);
+    this->window.setFramerateLimit(120);
 
  
     if (!this->font.openFromFile("Assets/Font/Silkscreen.ttf")) {
@@ -69,24 +70,31 @@ void Game::changeState(GameState newState) {
 
     case GameState::TwoPlayer:
         this->currentState = std::make_unique<TwoPlayerState>(this->window, this->font);
-      
+
         break;
 
     case GameState::Playing:
         this->currentState = std::make_unique<Gameplay>(this->window, this->font);
         break;
-   
+
     case GameState::ThreePlayer:
         this->currentState = std::make_unique<ThreePlayerState>(this->window, this->font);
-       
+
         break;
     case GameState::AboutUs:
         this->currentState = std::make_unique<AboutState>(this->window, this->font);
 
         break;
 
+
+    case GameState::Tutorials:
+        this->currentState = std::make_unique<TutorialState>(this->window, this->font);
+
+        break;
     }
+
 }
+
 
 void Game::processEvents() {
     while (const auto event = this->window.pollEvent()) {

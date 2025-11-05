@@ -46,6 +46,7 @@ ThreePlayerState::ThreePlayerState(sf::RenderWindow& window, sf::Font& font)
         font
     )
 {
+    gameMode = 3;
     
         sf::FloatRect textBounds = this->textUser1.getLocalBounds();
     /*textBounds = this->textUser1.getLocalBounds();

@@ -52,19 +52,24 @@ private:
     std::unique_ptr<sf::Texture> textureBoard;
     std::unique_ptr<sf::Texture> textureOIcon;
     std::unique_ptr<sf::Texture> textureXIcon;
+    std::unique_ptr<sf::Texture> textureVIcon;
     std::unique_ptr<sf::Texture> textureCard1;
     std::unique_ptr<sf::Texture> textureCard2;
-   
+    std::unique_ptr<sf::Texture> textureCard3;
+
 
     std::unique_ptr<sf::Sprite> spriteBoard;
     std::unique_ptr<sf::Sprite> spriteOIcon;
     std::unique_ptr<sf::Sprite> spriteXIcon;
+    std::unique_ptr<sf::Sprite> spriteVIcon;
     std::unique_ptr<sf::Sprite> spriteCard1;
     std::unique_ptr<sf::Sprite> spriteCard2;
+    std::unique_ptr<sf::Sprite> spriteCard3;
 
     std::vector<std::unique_ptr<sf::Sprite>> pieces;
     sf::Text score1;
     sf::Text score2;
+    sf::Text score3;
 
     float cellSize;
 };

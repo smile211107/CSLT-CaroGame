@@ -1,5 +1,6 @@
 #include "PlayerNameInput.h"
 #include "TwoPlayerState.h"
+
 #include "GamePlay.h"
 #include "Button.h"
 #include <iostream>
@@ -41,7 +42,7 @@ TwoPlayerState::TwoPlayerState(sf::RenderWindow& window, sf::Font& font)
         font
     )
 {
-    
+    gameMode = 2;
     sf::FloatRect textBounds = this->textUser1.getLocalBounds();
     /*textBounds = this->textUser1.getLocalBounds();
     this->textUser1.setOrigin({ textBounds.position.x + textBounds.size.x / 2.f,

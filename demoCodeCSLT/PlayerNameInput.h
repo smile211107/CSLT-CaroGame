@@ -4,9 +4,9 @@
 #include "Button.h"
 #include <string>
 #include <memory>
-
+extern std::string playerName[4];
 const int MAX_NAME_LENGTH = 15;
-
+extern int gameMode;
 class PlayerNameInput : public sf::Drawable
 {
 private:
