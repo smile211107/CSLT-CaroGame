@@ -8,6 +8,4 @@
 ipch/
 
 # Binaries and object files
-*.exe
-*.dll
 *.obj
