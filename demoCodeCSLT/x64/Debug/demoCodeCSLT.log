@@ -1,0 +1,10 @@
+﻿  Game.cpp
+  Game.h
+  GamePlay.cpp
+  Generating Code...
+demoCodeCSLT\x64\Debug\AboutState.obj : warning LNK4042: object specified more than once; extras ignored
+demoCodeCSLT\x64\Debug\Game.obj : warning LNK4042: object specified more than once; extras ignored
+demoCodeCSLT\x64\Debug\MainMenuState.obj : warning LNK4042: object specified more than once; extras ignored
+demoCodeCSLT\x64\Debug\NewGameState.obj : warning LNK4042: object specified more than once; extras ignored
+demoCodeCSLT\x64\Debug\PlayerNameInput.obj : warning LNK4042: object specified more than once; extras ignored
+  demoCodeCSLT.vcxproj -> E:\coding 25-26\CSLT\CSLT-CaroGame-051125\x64\Debug\demoCodeCSLT.exe
