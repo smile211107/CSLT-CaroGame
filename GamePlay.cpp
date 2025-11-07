@@ -1,8 +1,9 @@
 ﻿#include "GameState.h"
 #include "Game.h"
-#include "Gameplay.h"
+#include "GamePlay.h"
 #include "Button.h"
 #include "PlayerNameInput.h"
+#include "SettingsState.h"
 #include <iostream>
 #include <vector>
 // #include <conio.h>
@@ -179,10 +180,11 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
     if (!textureVToken->loadFromFile("Assets/gameplay/player3-token.png")) {
         cout << "khong tai duoc card 3";
     }
-    if (!gameplayMusic.openFromFile("assets/audio/gameplayAudio.mp3")) {
+    if (g_musicOn)
+        if (!gameplayMusic.openFromFile("assets/audio/gameplayAudio.mp3")) {
 
-        cout << "khong tai duoc am thanh";
-    }
+            cout << "khong tai duoc am thanh";
+        }
     this->endBackgroundSprite->setPosition({ this->window.getSize().x * 0.5f + 100, this->window.getSize().y * 0.6f });
     this->spriteCard1 = std::make_unique<sf::Sprite>(*(this->textureCard1));
     this->spriteCard2 = std::make_unique<sf::Sprite>(*(this->textureCard2));

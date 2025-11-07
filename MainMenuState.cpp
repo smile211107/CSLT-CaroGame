@@ -2,6 +2,7 @@
 #include "GameState.h"
 #include "Button.h"
 #include "NewGameState.h" 
+#include "SettingsState.h"
 #include "State.h"
 #include <iostream>
 

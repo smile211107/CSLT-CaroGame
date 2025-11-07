@@ -7,6 +7,7 @@
 #include "AboutState.h"
 #include "ThreePlayerState.h"
 #include "TutorialState.h"
+#include "SettingsState.h"
 #include<SFML/Graphics.hpp>
 #include<SFML/Audio.hpp>
 // #include<SFML/Network.hpp>
@@ -20,9 +21,9 @@
 bool requestMenuMusic = false;
 int gameMode = 0;
 Game::Game()
-    : window(sf::VideoMode({1920 ,1080}), "Caro Game OOP")
+    // : window(sf::VideoMode({1920 ,1080}), "Caro Game OOP")
     // : window(sf::VideoMode::getDesktopMode(), "Caro Game OOP", sf::State::Default)
-    // : window(sf::VideoMode::getDesktopMode(), "Caro Game OOP", sf::State::Fullscreen)
+    : window(sf::VideoMode::getDesktopMode(), "Caro Game OOP", sf::State::Fullscreen)
  
 {
 
@@ -40,9 +41,11 @@ Game::Game()
     this->currentStateEnum = GameState::MainMenu;
   
     this->currentState = std::make_unique<MainMenuState>(this->window, this->font);
-    mainMenuMusic.setLooping(true);
-    mainMenuMusic.setVolume(50);
-    mainMenuMusic.play();
+    if (g_musicOn){
+        mainMenuMusic.setLooping(true);
+        mainMenuMusic.setVolume(50);
+        mainMenuMusic.play();
+    }
 }
 
 void Game::run() {
@@ -58,19 +61,20 @@ void Game::run() {
         if (next != this->currentStateEnum) {
             this->changeState(next);
         }
-        // Nếu user vừa trở về từ trang settings
-        if (this->currentStateEnum == GameState::Settings) {
-            auto* settingsPtr = dynamic_cast<SettingsState*>(this->currentState.get());
-            if (settingsPtr) {
-                musicEnabled = settingsPtr->getMusicSetting();
-                if (musicEnabled) mainMenuMusic.play();
-                else mainMenuMusic.stop();
-            }
+        static GameState prevState = GameState::MainMenu;
+
+        if (prevState == GameState::Settings && this->currentStateEnum != GameState::Settings) {
+            // vừa thoát SettingsState
+            if (g_musicOn)
+                mainMenuMusic.play();
+            else
+                mainMenuMusic.stop();
         }
+
+        prevState = this->currentStateEnum;
 
     }
 }
-
 
 void Game::changeState(GameState newState) {
     this->currentStateEnum = newState;
@@ -78,53 +82,54 @@ void Game::changeState(GameState newState) {
     switch (this->currentStateEnum) {
 
     case GameState::MainMenu:
-        if (requestMenuMusic) mainMenuMusic.play();
         this->currentState = std::make_unique<MainMenuState>(this->window, this->font);
-        requestMenuMusic = false;
+        // Bật nhạc menu nếu g_musicOn = true và nhạc chưa phát
+        if (g_musicOn)
+            mainMenuMusic.play();
         break;
 
     case GameState::NewGame:
-        if (requestMenuMusic) mainMenuMusic.play();
         this->currentState = std::make_unique<NewGameState>(this->window, this->font);
+        if (g_musicOn)
+            mainMenuMusic.play();
         break;
 
     case GameState::Exiting:
         this->window.close();
         break;
+
     case GameState::Settings:
-        this->currentState = std::make_unique<SettingsState>(this->window, this->font, musicEnabled);
+        this->currentState = std::make_unique<SettingsState>(this->window, this->font);
         break;
 
     case GameState::TwoPlayer:
         this->currentState = std::make_unique<TwoPlayerState>(this->window, this->font);
-
         break;
 
     case GameState::Playing:
+        // Dừng nhạc menu khi vào gameplay
         mainMenuMusic.stop();
         this->currentState = std::make_unique<Gameplay>(this->window, this->font);
         break;
 
     case GameState::ThreePlayer:
         this->currentState = std::make_unique<ThreePlayerState>(this->window, this->font);
-
         break;
+
     case GameState::AboutUs:
         this->currentState = std::make_unique<AboutState>(this->window, this->font);
-
         break;
 
     case GameState::LoadGame:
-        if (requestMenuMusic) mainMenuMusic.play();
         this->currentState = std::make_unique<LoadGameState>(this->window, this->font);
-
+        if (g_musicOn)
+            mainMenuMusic.play();
         break;
+
     case GameState::Tutorials:
         this->currentState = std::make_unique<TutorialState>(this->window, this->font);
-
         break;
     }
-
 }
 
 

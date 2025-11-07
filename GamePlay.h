@@ -39,9 +39,9 @@ private:
     int board[BOARD_HEIGHT][BOARD_WIDTH];
     int currentPlayer;
     bool isGameOver;
-    int player1Score;
-    int player2Score;
-    int player3Score;
+    int player1Score = 0;
+    int player2Score = 0;
+    int player3Score = 0;
 
     int cursorX;
     int cursorY;

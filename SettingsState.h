@@ -4,6 +4,9 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 
+// Biến toàn cục cho trạng thái nhạc
+extern bool g_musicOn;
+
 class SettingsState : public State {
 private:
     sf::RenderWindow& window;
@@ -15,11 +18,11 @@ private:
     Button buttonBack;
     Button buttonMusic;
 
-    bool musicOn;
     GameState nextState;
 
 public:
-    SettingsState(sf::RenderWindow& window, sf::Font& font, bool musicOn = true);
+    // Constructor không cần truyền musicOn nữa
+    SettingsState(sf::RenderWindow& window, sf::Font& font);
 
     void handleEvent(const sf::Event& event) override;
     void update(sf::Vector2f mousePos) override;
