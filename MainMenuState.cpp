@@ -93,6 +93,10 @@ void MainMenuState::handleEvent(const sf::Event& event) {
             else if (currentButton == &this->buttonLoadGame) {
                 this->nextState = GameState::LoadGame;
             }
+            else if (currentButton == &this->buttonSettings) {
+                this->nextState = GameState::Settings;
+            }
+
 
         }
 

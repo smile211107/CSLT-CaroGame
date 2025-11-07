@@ -5,9 +5,9 @@
 #include "PlayerNameInput.h"
 #include <iostream>
 #include <vector>
-#include <conio.h>
+// #include <conio.h>
 #include <memory>
-#include <sfml/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 using namespace std;
 int turn = 0;

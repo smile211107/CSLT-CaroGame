@@ -7,19 +7,22 @@
 #include "AboutState.h"
 #include "ThreePlayerState.h"
 #include "TutorialState.h"
-#include<sfml/Graphics.hpp>
-#include<sfml/Audio.hpp>
-#include<sfml/Network.hpp>
-#include<sfml/Window.hpp>
+#include<SFML/Graphics.hpp>
+#include<SFML/Audio.hpp>
+// #include<SFML/Network.hpp>
+#include<SFML/Window.hpp>
+#include "SettingsState.h"
 
-#include<sfml/System.hpp>
+
+#include<SFML/System.hpp>
 #include <iostream>
 #include <memory>
 bool requestMenuMusic = false;
 int gameMode = 0;
 Game::Game()
-
-    : window(sf::VideoMode::getDesktopMode(), "Caro Game OOP", sf::State::Fullscreen)
+    : window(sf::VideoMode({1920 ,1080}), "Caro Game OOP")
+    // : window(sf::VideoMode::getDesktopMode(), "Caro Game OOP", sf::State::Default)
+    // : window(sf::VideoMode::getDesktopMode(), "Caro Game OOP", sf::State::Fullscreen)
  
 {
 
@@ -55,6 +58,16 @@ void Game::run() {
         if (next != this->currentStateEnum) {
             this->changeState(next);
         }
+        // Nếu user vừa trở về từ trang settings
+        if (this->currentStateEnum == GameState::Settings) {
+            auto* settingsPtr = dynamic_cast<SettingsState*>(this->currentState.get());
+            if (settingsPtr) {
+                musicEnabled = settingsPtr->getMusicSetting();
+                if (musicEnabled) mainMenuMusic.play();
+                else mainMenuMusic.stop();
+            }
+        }
+
     }
 }
 
@@ -77,6 +90,9 @@ void Game::changeState(GameState newState) {
 
     case GameState::Exiting:
         this->window.close();
+        break;
+    case GameState::Settings:
+        this->currentState = std::make_unique<SettingsState>(this->window, this->font, musicEnabled);
         break;
 
     case GameState::TwoPlayer:

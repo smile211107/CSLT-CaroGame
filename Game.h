@@ -22,7 +22,7 @@ private:
 
     // func dung de chuyen sang trang thai game khac
     void changeState(GameState newState);
-
+    bool musicEnabled = true;
     sf::RenderWindow window;
     sf::Font font;
     sf::Music mainMenuMusic;

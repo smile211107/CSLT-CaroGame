@@ -6,7 +6,7 @@
 class Button {
 public:
 
-    Button() = default;
+    Button() = delete;
 
 
     Button(const std::string& text, sf::Font& font,
@@ -17,6 +17,10 @@ public:
     void render(sf::RenderTarget& target) const;
     sf::Vector2f getPosition() const;
     void setSelected(bool selected);
+    void setLabel(const std::string& newText) {
+        this->buttonText.setString(newText);
+    }
+
 
 private:
     void updateOrigin();
