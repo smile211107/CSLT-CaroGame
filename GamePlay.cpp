@@ -593,7 +593,7 @@ void Gameplay::handleEvent(const sf::Event& event) {
                     {
                         winSound.play();
                         if (gameMode == 2) result = 4;
-                        result = 5;
+                        else result = 5;
                     }
 
                     currentPlayer++;
