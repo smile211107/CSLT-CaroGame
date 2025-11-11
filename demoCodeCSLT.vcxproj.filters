@@ -69,6 +69,12 @@
     <ClCompile Include="LoadGameState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
+=======
+    <ClCompile Include="SettingsState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+>>>>>>> CaroGameSubmission1.01
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameState.h">
@@ -92,6 +98,12 @@
     <ClInclude Include="LoadGameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
+=======
+    <ClInclude Include="SettingsState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+>>>>>>> CaroGameSubmission1.01
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />

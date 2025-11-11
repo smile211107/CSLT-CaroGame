@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 ﻿  TwoPlayerState.cpp
 D:\CSLT-CaroGame-061125 (1)\CSLT-CaroGame-061125\TwoPlayerState.cpp(120,81): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   demoCodeCSLT.vcxproj -> D:\CSLT-CaroGame-061125 (1)\CSLT-CaroGame-061125\x64\Debug\demoCodeCSLT.exe
+=======
+﻿  GamePlay.cpp
+  demoCodeCSLT.vcxproj -> E:\coding 25-26\CSLT\CSLT-CaroGame-example\x64\Debug\demoCodeCSLT.exe
+>>>>>>> CaroGameSubmission1.01

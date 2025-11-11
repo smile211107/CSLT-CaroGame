@@ -68,11 +68,19 @@ void MainMenuState::handleEvent(const sf::Event& event) {
 
         if (key->scancode == sf::Keyboard::Scancode::W || key->scancode == sf::Keyboard::Scancode::Up) {
        
+<<<<<<< HEAD
             selectedButtonIndex = (selectedButtonIndex - 1 + menuButtons.size()) % menuButtons.size();
         }
         else if (key->scancode == sf::Keyboard::Scancode::S || key->scancode == sf::Keyboard::Scancode::Down) {
          
             selectedButtonIndex = (selectedButtonIndex + 1) % menuButtons.size();
+=======
+            selectedButtonIndex = (selectedButtonIndex - 1 + static_cast<int>(menuButtons.size())) % static_cast<int>(menuButtons.size());
+        }
+        else if (key->scancode == sf::Keyboard::Scancode::S || key->scancode == sf::Keyboard::Scancode::Down) {
+         
+            selectedButtonIndex = (selectedButtonIndex + 1) % static_cast<int>(menuButtons.size());
+>>>>>>> CaroGameSubmission1.01
         }
         else if (key->scancode == sf::Keyboard::Scancode::Enter) {
 

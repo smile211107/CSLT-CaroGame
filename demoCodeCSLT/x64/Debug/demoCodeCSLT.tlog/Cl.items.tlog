@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 D:\CSLT-CaroGame-061125 (1)\CSLT-CaroGame-061125\AboutState.cpp;D:\CSLT-CaroGame-061125 (1)\CSLT-CaroGame-061125\demoCodeCSLT\x64\Debug\AboutState.obj
 D:\CSLT-CaroGame-061125 (1)\CSLT-CaroGame-061125\AboutState.h;D:\CSLT-CaroGame-061125 (1)\CSLT-CaroGame-061125\demoCodeCSLT\x64\Debug\AboutState.obj
 D:\CSLT-CaroGame-061125 (1)\CSLT-CaroGame-061125\Button.cpp;D:\CSLT-CaroGame-061125 (1)\CSLT-CaroGame-061125\demoCodeCSLT\x64\Debug\Button.obj
@@ -16,3 +17,24 @@ D:\CSLT-CaroGame-061125 (1)\CSLT-CaroGame-061125\ThreePlayerInput.cpp;D:\CSLT-Ca
 D:\CSLT-CaroGame-061125 (1)\CSLT-CaroGame-061125\ThreePlayerState.h;D:\CSLT-CaroGame-061125 (1)\CSLT-CaroGame-061125\demoCodeCSLT\x64\Debug\ThreePlayerState.obj
 D:\CSLT-CaroGame-061125 (1)\CSLT-CaroGame-061125\TutorialState.cpp;D:\CSLT-CaroGame-061125 (1)\CSLT-CaroGame-061125\demoCodeCSLT\x64\Debug\TutorialState.obj
 D:\CSLT-CaroGame-061125 (1)\CSLT-CaroGame-061125\TwoPlayerState.cpp;D:\CSLT-CaroGame-061125 (1)\CSLT-CaroGame-061125\demoCodeCSLT\x64\Debug\TwoPlayerState.obj
+=======
+E:\coding 25-26\CSLT\CSLT-CaroGame-example\AboutState.cpp;E:\coding 25-26\CSLT\CSLT-CaroGame-example\demoCodeCSLT\x64\Debug\AboutState.obj
+E:\coding 25-26\CSLT\CSLT-CaroGame-example\AboutState.h;E:\coding 25-26\CSLT\CSLT-CaroGame-example\demoCodeCSLT\x64\Debug\AboutState.obj
+E:\coding 25-26\CSLT\CSLT-CaroGame-example\Button.cpp;E:\coding 25-26\CSLT\CSLT-CaroGame-example\demoCodeCSLT\x64\Debug\Button.obj
+E:\coding 25-26\CSLT\CSLT-CaroGame-example\Game.cpp;E:\coding 25-26\CSLT\CSLT-CaroGame-example\demoCodeCSLT\x64\Debug\Game.obj
+E:\coding 25-26\CSLT\CSLT-CaroGame-example\Game.h;E:\coding 25-26\CSLT\CSLT-CaroGame-example\demoCodeCSLT\x64\Debug\Game.obj
+E:\coding 25-26\CSLT\CSLT-CaroGame-example\GamePlay.cpp;E:\coding 25-26\CSLT\CSLT-CaroGame-example\demoCodeCSLT\x64\Debug\GamePlay.obj
+E:\coding 25-26\CSLT\CSLT-CaroGame-example\LoadGameState.cpp;E:\coding 25-26\CSLT\CSLT-CaroGame-example\demoCodeCSLT\x64\Debug\LoadGameState.obj
+E:\coding 25-26\CSLT\CSLT-CaroGame-example\main.cpp;E:\coding 25-26\CSLT\CSLT-CaroGame-example\demoCodeCSLT\x64\Debug\main.obj
+E:\coding 25-26\CSLT\CSLT-CaroGame-example\MainMenuState.cpp;E:\coding 25-26\CSLT\CSLT-CaroGame-example\demoCodeCSLT\x64\Debug\MainMenuState.obj
+E:\coding 25-26\CSLT\CSLT-CaroGame-example\MainMenuState.h;E:\coding 25-26\CSLT\CSLT-CaroGame-example\demoCodeCSLT\x64\Debug\MainMenuState.obj
+E:\coding 25-26\CSLT\CSLT-CaroGame-example\NewGameState.cpp;E:\coding 25-26\CSLT\CSLT-CaroGame-example\demoCodeCSLT\x64\Debug\NewGameState.obj
+E:\coding 25-26\CSLT\CSLT-CaroGame-example\NewGameState.h;E:\coding 25-26\CSLT\CSLT-CaroGame-example\demoCodeCSLT\x64\Debug\NewGameState.obj
+E:\coding 25-26\CSLT\CSLT-CaroGame-example\PlayerNameInput.cpp;E:\coding 25-26\CSLT\CSLT-CaroGame-example\demoCodeCSLT\x64\Debug\PlayerNameInput.obj
+E:\coding 25-26\CSLT\CSLT-CaroGame-example\PlayerNameInput.h;E:\coding 25-26\CSLT\CSLT-CaroGame-example\demoCodeCSLT\x64\Debug\PlayerNameInput.obj
+E:\coding 25-26\CSLT\CSLT-CaroGame-example\SettingsState.cpp;E:\coding 25-26\CSLT\CSLT-CaroGame-example\demoCodeCSLT\x64\Debug\SettingsState.obj
+E:\coding 25-26\CSLT\CSLT-CaroGame-example\ThreePlayerInput.cpp;E:\coding 25-26\CSLT\CSLT-CaroGame-example\demoCodeCSLT\x64\Debug\ThreePlayerInput.obj
+E:\coding 25-26\CSLT\CSLT-CaroGame-example\ThreePlayerState.h;E:\coding 25-26\CSLT\CSLT-CaroGame-example\demoCodeCSLT\x64\Debug\ThreePlayerState.obj
+E:\coding 25-26\CSLT\CSLT-CaroGame-example\TutorialState.cpp;E:\coding 25-26\CSLT\CSLT-CaroGame-example\demoCodeCSLT\x64\Debug\TutorialState.obj
+E:\coding 25-26\CSLT\CSLT-CaroGame-example\TwoPlayerState.cpp;E:\coding 25-26\CSLT\CSLT-CaroGame-example\demoCodeCSLT\x64\Debug\TwoPlayerState.obj
+>>>>>>> CaroGameSubmission1.01

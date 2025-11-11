@@ -2,7 +2,11 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
+<<<<<<< HEAD
       <FullPath>D:\CSLT-CaroGame-061125 (1)\CSLT-CaroGame-061125\x64\Debug\demoCodeCSLT.exe</FullPath>
+=======
+      <FullPath>E:\coding 25-26\CSLT\CSLT-CaroGame-example\x64\Debug\demoCodeCSLT.exe</FullPath>
+>>>>>>> CaroGameSubmission1.01
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
