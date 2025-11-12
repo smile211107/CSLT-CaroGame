@@ -77,7 +77,7 @@ ThreePlayerState::ThreePlayerState(sf::RenderWindow& window, sf::Font& font)
     this->threePlayerBackgroundTexture = std::make_unique<sf::Texture>();
 
 
-    if (!this->threePlayerBackgroundTexture->loadFromFile("Assets/Image/typeName3-background-vn.png")) {
+    if (!this->threePlayerBackgroundTexture->loadFromFile("Assets/Image/vn/typeName3-background.png")) {
         std::cout << "khong the mo menubackground" << '\n';
     }
 

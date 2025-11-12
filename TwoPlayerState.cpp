@@ -64,7 +64,7 @@ TwoPlayerState::TwoPlayerState(sf::RenderWindow& window, sf::Font& font)
     this->twoPlayerBackgroundTexture = std::make_unique<sf::Texture>();
 
 
-    if (!this->twoPlayerBackgroundTexture->loadFromFile("Assets/Image/typeName2-background-vn.png")) {
+    if (!this->twoPlayerBackgroundTexture->loadFromFile("Assets/Image/vn/typeName2-background.png")) {
         std::cout << "khong the mo menubackground" << '\n';
     }
 

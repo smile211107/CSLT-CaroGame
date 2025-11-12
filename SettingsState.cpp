@@ -19,7 +19,7 @@ SettingsState::SettingsState(sf::RenderWindow& window, sf::Font& font)
 
     // Load background
     this->backgroundTexture = std::make_unique<sf::Texture>();
-    if (!this->backgroundTexture->loadFromFile("Assets/Image/background.png")) {
+    if (!this->backgroundTexture->loadFromFile("Assets/Image/vn/settings-background.png")) {
         std::cerr << "⚠️ Không thể tải background.png\n";
     }
     this->backgroundSprite = std::make_unique<sf::Sprite>(*this->backgroundTexture);

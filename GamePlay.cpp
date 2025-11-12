@@ -17,6 +17,11 @@ bool isPause = false, endGame = false;
 const int margin = 30, playerSize = 50;
 const sf::Vector2f BUTTON_SIZE = { 400.0F, 60.f };
 const float GAP = 90.0f;
+float length = 0;
+sf::RectangleShape line(sf::Vector2f(length, 5.f));
+pair<int, int> pointOne = { 1,1 }, pointFive = { 1,0 };
+sf::Vector2f startPoint({ 0,0 });
+sf::Vector2f endPoint({ 0,0 });
 
 uint8_t mainGameBoard[13][13] = {
     {0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -33,17 +38,37 @@ uint8_t mainGameBoard[13][13] = {
     {0,0,0,0,0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0,0,0,0,0},
 };
-
+//Ham tra ve toa do thuc trong window
+sf::Vector2f cord(int y, int x)
+{
+    float cx = static_cast<float>(x) * 80 - 10;
+    float cy = static_cast<float>(y) * 80 - 10;
+    sf::Vector2f cordinate({ cx,cy });
+    return cordinate;
+}
 int checkRow(int y, int x)
 {
     int res = 1, start = 1, end = 12;
     if (x > 4) start = x - 4;
     if (x < 9) end = x + 4;
+    pointOne.first = y;
+    pointFive.first = y;
+    pointOne.second = start;
     for (int i = start; i <= end; i++)
     {
         if (mainGameBoard[y][i] == mainGameBoard[y][i - 1] && mainGameBoard[y][i] == mainGameBoard[y][x] && mainGameBoard[y][i] > 0) res++;
-        else res = 1;
-        if (res > 4) return mainGameBoard[y][x];
+        else
+        {
+            res = 1;
+            pointOne.second = i;
+        }
+        if (res > 4)
+        {
+            line.setSize(sf::Vector2f(350, 10));
+            line.setOrigin({ 0,5 });
+            pointFive.second = i;
+            return mainGameBoard[y][x];
+        }
     }
     return 0;
 }
@@ -53,11 +78,24 @@ int checkCol(int y, int x)
     int res = 1, start = 1, end = 12;
     if (y > 4) start = y - 4;
     if (y < 9) end = y + 4;
+    pointOne.second = x;
+    pointFive.second = x;
+    pointOne.first = start;
     for (int i = start; i <= end; i++)
     {
         if (mainGameBoard[i][x] == mainGameBoard[i - 1][x] && mainGameBoard[i][x] == mainGameBoard[y][x] && mainGameBoard[i][x] > 0) res++;
-        else res = 1;
-        if (res > 4) return mainGameBoard[y][x];
+        else
+        {
+            res = 1;
+            pointOne.first = i;
+        }
+        if (res > 4)
+        {
+            line.setSize(sf::Vector2f(10, 350));
+            line.setOrigin({ 5,0 });
+            pointFive.first = i;
+            return mainGameBoard[y][x];
+        }
     }
     return 0;
 }
@@ -75,11 +113,26 @@ int checkDia2(int y, int x)
         i = x + y - 11;
         j = 11;
     }
+    pointOne.first = i - 1;
+    pointOne.second = j + 1;
     while (i <= 12 && j >= 1)
     {
         if (mainGameBoard[i][j] == mainGameBoard[i - 1][j + 1] && mainGameBoard[i][j] == mainGameBoard[y][x] && mainGameBoard[i][j] > 0) res++;
-        else res = 1;
-        if (res > 4) return mainGameBoard[i][j];
+        else
+        {
+            res = 1;
+            pointOne.first = i;
+            pointOne.second = j;
+        }
+        if (res > 4)
+        {
+            line.setSize(sf::Vector2f(495, 10));
+            line.setOrigin({ 0,5 });
+            line.rotate(sf::degrees(135));
+            pointFive.first = i;
+            pointFive.second = j;
+            return mainGameBoard[i][j];
+        }
         i++; j--;
     }
     return 0;
@@ -98,11 +151,26 @@ int checkDia1(int y, int x)
         i = 2;
         j = x - y + 2;
     }
+    pointOne.first = i - 1;
+    pointOne.second = j - 1;
     while (i <= 12 && j <= 12)
     {
         if (mainGameBoard[i][j] == mainGameBoard[i - 1][j - 1] && mainGameBoard[i][j] == mainGameBoard[y][x] && mainGameBoard[i][j] > 0) res++;
-        else res = 1;
-        if (res > 4) return mainGameBoard[i][j];
+        else
+        {
+            res = 1;
+            pointOne.first = i;
+            pointOne.second = j;
+        }
+        if (res > 4)
+        {
+            line.setSize(sf::Vector2f(495, 10));
+            line.setOrigin({ 0,5 });
+            line.rotate(sf::degrees(45));
+            pointFive.first = i;
+            pointFive.second = j;
+            return mainGameBoard[i][j];
+        }
         i++; j++;
     }
     return 0;
@@ -124,13 +192,15 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
     score1(font, playerNames[1] + ": " + to_string(player1Score), 48),
     score2(font, playerNames[2] + ": " + to_string(player2Score), 48),
     score3(font, playerNames[3] + ": " + to_string(player3Score), 48),
-    buttonNewGame("New Game", font, BUTTON_SIZE,
+    buttonNewGame("Continue Game", font, BUTTON_SIZE,
         { window.getSize().x * 0.75f, window.getSize().y * 0.5f + (GAP * 2) + 20 }),
     buttonSaveGame("Save Game", font, BUTTON_SIZE,
         { window.getSize().x * 0.75f, window.getSize().y * 0.5f + (GAP * 3) + 20 }),
     buttonExit("Exit", font, BUTTON_SIZE,
         { window.getSize().x * 0.75f, window.getSize().y * 0.5f + (GAP * 4) + 20 })
+
 {
+
     this->endButtons.push_back(&this->buttonNewGame);
     this->endButtons.push_back(&this->buttonSaveGame);
     this->endButtons.push_back(&this->buttonExit);
@@ -145,8 +215,7 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
     this->textureVToken = std::make_unique<sf::Texture>();
     this->endBackgroundTexture = std::make_unique<sf::Texture>();
 
-
-    if (!this->endBackgroundTexture->loadFromFile("Assets/gameplay/endBox.png")) {
+    if (!this->endBackgroundTexture->loadFromFile("Assets/image/endBox.png")) {
         std::cout << "khong the mo end box" << '\n';
     }
     if (!winSound.openFromFile("assets/audio/sound-win.mp3")) {
@@ -162,22 +231,22 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
         cout << "khong tai duoc am thanh";
     }
     this->endBackgroundSprite = std::make_unique<sf::Sprite>(*(this->endBackgroundTexture));
-    if (!textureCard1->loadFromFile("Assets/gameplay/player1-card.png")) {
+    if (!textureCard1->loadFromFile("Assets/image/player1-card.png")) {
         cout << "khong tai duoc card 1";
     }
-    if (!textureCard2->loadFromFile("Assets/gameplay/player2-card.png")) {
+    if (!textureCard2->loadFromFile("Assets/image/player2-card.png")) {
         cout << "khong tai duoc card 2";
     }
-    if (!textureCard3->loadFromFile("Assets/gameplay/player3-card.png")) {
+    if (!textureCard3->loadFromFile("Assets/image/player3-card.png")) {
         cout << "khong tai duoc card 3";
     }
-    if (!textureXToken->loadFromFile("Assets/gameplay/player1-token.png")) {
+    if (!textureXToken->loadFromFile("Assets/image/player1-token.png")) {
         cout << "khong tai duoc card 1";
     }
-    if (!textureOToken->loadFromFile("Assets/gameplay/player2-token.png")) {
+    if (!textureOToken->loadFromFile("Assets/image/player2-token.png")) {
         cout << "khong tai duoc card 2";
     }
-    if (!textureVToken->loadFromFile("Assets/gameplay/player3-token.png")) {
+    if (!textureVToken->loadFromFile("Assets/image/player3-token.png")) {
         cout << "khong tai duoc card 3";
     }
     if (g_musicOn)
@@ -256,46 +325,48 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
     this->textureOWin = std::make_unique<sf::Texture>();
     this->textureVWin = std::make_unique<sf::Texture>();
     this->texturePauseBox = std::make_unique<sf::Texture>();
-    if (!this->texturePauseBox->loadFromFile("Assets/gameplay/pause-box-vn.png")) {
+    if (!this->texturePauseBox->loadFromFile("Assets/image/vn/pause-box.png")) {
         cout << "khong tai duoc pause box" << '\n';
 
     };
-    if (!this->textureOIcon->loadFromFile("Assets/gameplay/o-icon.png")) {
+    if (!this->textureOIcon->loadFromFile("Assets/image/o-icon.png")) {
         cout << "khong tai duoc icon o" << '\n';
 
     };
-    if (!this->textureXIcon->loadFromFile("Assets/gameplay/x-icon.png")) {
+    if (!this->textureXIcon->loadFromFile("Assets/image/x-icon.png")) {
         cout << "khong tai duoc icon x" << '\n';
 
     };
-    if (!this->textureVIcon->loadFromFile("Assets/gameplay/v-icon.png")) {
+    if (!this->textureVIcon->loadFromFile("Assets/image/v-icon.png")) {
         cout << "khong tai duoc icon x" << '\n';
 
     };
-    if (!this->textureOWin->loadFromFile("Assets/gameplay/o-win-vn.png")) {
+    if (!this->textureOWin->loadFromFile("Assets/image/vn/o-win.png")) {
         cout << "khong tai duoc win o" << '\n';
 
     };
-    if (!this->textureXWin->loadFromFile("Assets/gameplay/x-win-vn.png")) {
+    if (!this->textureXWin->loadFromFile("Assets/image/vn/x-win.png")) {
         cout << "khong tai duoc win x" << '\n';
 
     };
-    if (!this->textureVWin->loadFromFile("Assets/gameplay/v-win-vn.png")) {
+    if (!this->textureVWin->loadFromFile("Assets/image/vn/v-win.png")) {
         cout << "khong tai duoc win v" << '\n';
 
     };
-    if (!this->textureTwoDraw->loadFromFile("Assets/gameplay/draw-2player-vn.png")) {
+    if (!this->textureTwoDraw->loadFromFile("Assets/image/vn/draw-2player.png")) {
         cout << "khong tai duoc draw2" << '\n';
 
     };
-    if (!this->textureThreeDraw->loadFromFile("Assets/gameplay/draw-3player-vn.png")) {
+    if (!this->textureThreeDraw->loadFromFile("Assets/image/vn/draw-3player.png")) {
         cout << "khong tai duoc draw3" << '\n';
 
     };
     this->spriteEndEffect = std::make_unique<sf::Sprite>(*(this->textureXWin));
 
     cursorShape.setSize(sf::Vector2f(cellSize - 10, CURSOR_THICKNESS));
+    line.setSize(sf::Vector2f(0, 0));
     cursorShape.setFillColor(sf::Color::Blue);
+    line.setFillColor(sf::Color::Red);
     this->spritePauseBox = std::make_unique<sf::Sprite>(*(this->texturePauseBox));
     spriteBounds = this->spritePauseBox->getLocalBounds();
 
@@ -303,19 +374,22 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
                                      spriteBounds.position.y + spriteBounds.size.y / 2.0f });
     this->spritePauseBox->setPosition({ window.getSize().x / 2.0f,
                                     window.getSize().y / 2.0f });
-
+    firstGame = true;
+    line.setSize({ 0,0 });
     newGame();
 }
 
 
 void Gameplay::updateCursorShapePosition() {
     cursorShape.setPosition({ margin + (cursorX - 1) * cellSize + 10,margin + cursorY * cellSize - CURSOR_THICKNESS });
+    line.setPosition({ startPoint });
 
 }
 
 
 void Gameplay::newGame() {
     pieces.clear();
+    line.setRotation(sf::degrees(0));
     for (int i = 0; i < BOARD_HEIGHT; ++i)
     {
         for (int j = 0; j < BOARD_WIDTH; ++j)
@@ -323,10 +397,17 @@ void Gameplay::newGame() {
             mainGameBoard[i][j] = 0;
         }
     }
-    currentPlayer = 1;
+    currentPlayer = (player1Score + player2Score + ((gameMode - 2) * player3Score)) + 1;
+    if (currentPlayer > gameMode) currentPlayer = 1;
     isGameOver = 0;
     endGame = false;
     isPause = false;
+    if (firstGame)
+    {
+        player1Score = 0;
+        player2Score = 0;
+        player3Score = 0;
+    }
     result = 0;
 
     cursorY = BOARD_HEIGHT / 2;
@@ -348,11 +429,11 @@ void Gameplay::handleEvent(const sf::Event& event) {
 
             if (key->scancode == sf::Keyboard::Scancode::W || key->scancode == sf::Keyboard::Scancode::Up) {
 
-                selectedButtonIndex = (selectedButtonIndex - 1 + endButtons.size()) % endButtons.size();
+                selectedButtonIndex = (selectedButtonIndex - 1 + static_cast<int>(endButtons.size())) % static_cast<int>(endButtons.size());
             }
             else if (key->scancode == sf::Keyboard::Scancode::S || key->scancode == sf::Keyboard::Scancode::Down) {
 
-                selectedButtonIndex = (selectedButtonIndex + 1) % endButtons.size();
+                selectedButtonIndex = (selectedButtonIndex + 1) % static_cast<int>(endButtons.size());
             }
             else if (key->scancode == sf::Keyboard::Scancode::Enter) {
                 result = 0;
@@ -361,7 +442,10 @@ void Gameplay::handleEvent(const sf::Event& event) {
 
 
                 if (currentButton == &this->buttonNewGame) {
-                    this->nextState = GameState::NewGame;
+                    firstGame = false;
+                    line.setSize({ 0,0 });
+                    newGame();
+                    this->nextState = GameState::Playing;
 
                 }
                 else if (currentButton == &this->buttonExit) {
@@ -385,15 +469,11 @@ void Gameplay::handleEvent(const sf::Event& event) {
             endGame = true;
 
         }
-        if (endGame && key->scancode == sf::Keyboard::Scancode::Escape)
-        {
-            newGame();
-        }
-        if (isPause && key->scancode == sf::Keyboard::Scancode::Space)
+        if (isPause && key->scancode == sf::Keyboard::Scancode::Enter)
         {
             isPause = false;
         }
-        if (!isPause && key->scancode == sf::Keyboard::Scancode::P)
+        if (!isPause && key->scancode == sf::Keyboard::Scancode::Escape)
         {
             isPause = true;
         }
@@ -441,7 +521,7 @@ void Gameplay::handleEvent(const sf::Event& event) {
                 updateCursorShapePosition();
 
             }
-            else if (key->scancode == sf::Keyboard::Scancode::Enter)
+            else if (key->scancode == sf::Keyboard::Scancode::Space)
                 //|| key->scancode == sf::Keyboard::Scancode::Space)
             {
                 playSound.setVolume(75);
@@ -477,7 +557,18 @@ void Gameplay::handleEvent(const sf::Event& event) {
 
                     if (checkWin(y, x, currentPlayer) > 0)
                     {
+                        startPoint = cord(pointOne.first, pointOne.second);
+                        endPoint = cord(pointFive.first, pointFive.second);
+                        sf::Vector2f direction = endPoint - startPoint;
 
+                        line.setPosition(startPoint);
+
+                        // Calculate the angle of rotation
+
+                        /*float angle = std::atan2(direction.y, direction.x) * 180.f / 3.14159265f;
+                        line.setRotation(angle);*/
+                        //window.draw(line);
+                        cout << startPoint.x << ' ' << startPoint.y << ' ' << endPoint.x << ' ' << endPoint.y << '\n';
                         winSound.setVolume(75);
                         winSound.play();
                         if (currentPlayer == 1)
@@ -504,7 +595,7 @@ void Gameplay::handleEvent(const sf::Event& event) {
                     {
                         winSound.play();
                         if (gameMode == 2) result = 4;
-                        result = 5;
+                        else result = 5;
                     }
 
                     currentPlayer++;
@@ -557,6 +648,7 @@ void Gameplay::render(sf::RenderTarget& target) {
     if (!isGameOver)
     {
         target.draw(cursorShape);
+        target.draw(line);
         if (currentPlayer == 1) {
             target.draw(*spriteXToken);
 
@@ -570,7 +662,7 @@ void Gameplay::render(sf::RenderTarget& target) {
     }
     if (endGame)
     {
-   
+
         target.draw(*endBackgroundSprite);
         this->buttonNewGame.render(target);
         this->buttonSaveGame.render(target);
@@ -578,7 +670,7 @@ void Gameplay::render(sf::RenderTarget& target) {
     }
     if (result > 0 && !endGame)
     {
-       
+        target.draw(line);
         switch (result)
         {
         case 1:
@@ -607,7 +699,7 @@ void Gameplay::render(sf::RenderTarget& target) {
         this->spriteEndEffect->setPosition({ window.getSize().x / 2.0f,
                                          window.getSize().y / 2.0f });
         target.draw(*spriteEndEffect);
-      
+
     }
     if (isPause)
     {

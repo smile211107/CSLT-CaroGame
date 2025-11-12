@@ -16,7 +16,7 @@ TutorialState::TutorialState(sf::RenderWindow& window, sf::Font& font)
     this->backgroundTexture = std::make_unique<sf::Texture>();
 
    
-    if (!this->backgroundTexture->loadFromFile("Assets/image/tutorial-background-vn.png")) {
+    if (!this->backgroundTexture->loadFromFile("Assets/image/vn/tutorial-background.png")) {
         std::cout << "khong the mo tutorialbackground" << '\n';
     }
 

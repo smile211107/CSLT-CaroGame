@@ -145,6 +145,7 @@
     <ClCompile Include="NewGameState.h" />
     <ClCompile Include="PlayerNameInput.cpp" />
     <ClCompile Include="PlayerNameInput.h" />
+    <ClCompile Include="SettingsState.cpp" />
     <ClCompile Include="ThreePlayerInput.cpp" />
     <ClCompile Include="ThreePlayerState.h" />
     <ClCompile Include="TutorialState.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="GamePlay.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="LoadGameState.h" />
+    <ClInclude Include="SettingsState.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="TutorialState.h" />
     <ClInclude Include="TwoPlayerState.h" />

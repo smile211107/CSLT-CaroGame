@@ -24,7 +24,7 @@ NewGameState::NewGameState(sf::RenderWindow& window, sf::Font& font)
     this->backgroundTexture = std::make_unique<sf::Texture>();
 
 
-    if (!this->backgroundTexture->loadFromFile("assets/image/selectMode-background-vn.png")) {
+    if (!this->backgroundTexture->loadFromFile("assets/image/vn/selectMode-background.png")) {
         std::cout << "khong the mo menubackground" << '\n';
     }
 

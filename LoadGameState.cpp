@@ -24,7 +24,7 @@ LoadGameState::LoadGameState(sf::RenderWindow& window, sf::Font& font)
     this->backgroundTexture = std::make_unique<sf::Texture>();
 
 
-    if (!this->backgroundTexture->loadFromFile("Assets/image/loadGame-background-vn.png")) {
+    if (!this->backgroundTexture->loadFromFile("Assets/image/vn/loadGame-background.png")) {
         cout << "khong the mo loadgame background" << '\n';
     }
 

@@ -17,7 +17,7 @@ AboutState::AboutState(sf::RenderWindow& window, sf::Font& font)
     this->backgroundTexture = std::make_unique<sf::Texture>();
 
   
-    if (!this->backgroundTexture->loadFromFile("Assets/image/about-background-vn.png")) {
+    if (!this->backgroundTexture->loadFromFile("Assets/image/vn/about-background.png")) {
         cout << "khong the mo Aboutbackground" << '\n';
     }
 

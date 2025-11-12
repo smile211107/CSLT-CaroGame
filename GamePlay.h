@@ -39,6 +39,7 @@ private:
     int board[BOARD_HEIGHT][BOARD_WIDTH];
     int currentPlayer;
     bool isGameOver;
+    bool firstGame = true;
     int player1Score = 0;
     int player2Score = 0;
     int player3Score = 0;
@@ -46,6 +47,7 @@ private:
     int cursorX;
     int cursorY;
     sf::RectangleShape cursorShape;
+
 
 
     std::unique_ptr<sf::Texture> textureTwoDraw;
