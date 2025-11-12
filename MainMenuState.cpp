@@ -73,6 +73,7 @@ void MainMenuState::handleEvent(const sf::Event& event) {
         else if (key->scancode == sf::Keyboard::Scancode::S || key->scancode == sf::Keyboard::Scancode::Down) {
          
             selectedButtonIndex = (selectedButtonIndex + 1) % menuButtons.size();
+
         }
         else if (key->scancode == sf::Keyboard::Scancode::Enter) {
 

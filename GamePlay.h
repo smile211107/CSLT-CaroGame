@@ -47,6 +47,7 @@ private:
     int cursorX;
     int cursorY;
     sf::RectangleShape cursorShape;
+    
 
 
 

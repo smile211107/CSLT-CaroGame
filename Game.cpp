@@ -21,9 +21,9 @@
 bool requestMenuMusic = false;
 int gameMode = 0;
 Game::Game()
-    // : window(sf::VideoMode({1920 ,1080}), "Caro Game OOP")
+    : window(sf::VideoMode({1920 ,1080}), "Caro Game OOP", sf::State::Fullscreen)
     // : window(sf::VideoMode::getDesktopMode(), "Caro Game OOP", sf::State::Default)
-    : window(sf::VideoMode::getDesktopMode(), "Caro Game OOP", sf::State::Fullscreen)
+    // : window(sf::VideoMode::getDesktopMode(), "Caro Game OOP", sf::State::Fullscreen)
  
 {
 
@@ -104,10 +104,10 @@ void Game::changeState(GameState newState) {
 
     case GameState::TwoPlayer:
         this->currentState = std::make_unique<TwoPlayerState>(this->window, this->font);
+
         break;
 
     case GameState::Playing:
-        // Dừng nhạc menu khi vào gameplay
         mainMenuMusic.stop();
         this->currentState = std::make_unique<Gameplay>(this->window, this->font);
         break;
