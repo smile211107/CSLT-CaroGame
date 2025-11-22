@@ -3,9 +3,14 @@
 #include "Button.h"
 #include <SFML/Graphics.hpp>
 #include <memory>
+#include <cstring>
 
 // Biến toàn cục cho trạng thái nhạc
 extern bool g_musicOn;
+extern bool g_soundOn;
+extern bool g_language;
+
+extern std::string ngonngu[2];
 
 class SettingsState : public State {
 private:
@@ -17,6 +22,8 @@ private:
 
     Button buttonBack;
     Button buttonMusic;
+    Button buttonSound;
+    Button buttonLanguage;
 
     GameState nextState;
 
@@ -31,4 +38,5 @@ public:
     GameState getNextState() override;
 
     bool getMusicSetting() const;
+    // bool getSoundSetting() const;
 };

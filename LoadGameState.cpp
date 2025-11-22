@@ -1,4 +1,5 @@
 ﻿#include "LoadGameState.h"
+#include "SettingsState.h"
 #include "Button.h"
 #include <iostream>
 #include <string>
@@ -24,7 +25,7 @@ LoadGameState::LoadGameState(sf::RenderWindow& window, sf::Font& font)
     this->backgroundTexture = std::make_unique<sf::Texture>();
 
 
-    if (!this->backgroundTexture->loadFromFile("Assets/image/vn/loadGame-background.png")) {
+    if (!this->backgroundTexture->loadFromFile("Assets/image/"+ngonngu[g_language]+"/loadGame-background.png")) {
         cout << "khong the mo loadgame background" << '\n';
     }
 

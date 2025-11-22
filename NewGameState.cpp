@@ -1,4 +1,5 @@
 ﻿#include "NewGameState.h"
+#include "SettingsState.h"
 #include <iostream>
 #include <memory>
 const sf::Vector2f PLAYER_BUTTON_SIZE = { 400.f, 50.f };
@@ -24,7 +25,7 @@ NewGameState::NewGameState(sf::RenderWindow& window, sf::Font& font)
     this->backgroundTexture = std::make_unique<sf::Texture>();
 
 
-    if (!this->backgroundTexture->loadFromFile("assets/image/vn/selectMode-background.png")) {
+    if (!this->backgroundTexture->loadFromFile("assets/image/"+ngonngu[g_language]+"/selectMode-background.png")) {
         std::cout << "khong the mo menubackground" << '\n';
     }
 

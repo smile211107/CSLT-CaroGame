@@ -1,4 +1,5 @@
 ﻿#include "TutorialState.h"
+#include "SettingsState.h"
 #include <iostream>
 
 const sf::Vector2f PLAYER_BUTTON_SIZE = { 400.f, 50.f };
@@ -16,7 +17,7 @@ TutorialState::TutorialState(sf::RenderWindow& window, sf::Font& font)
     this->backgroundTexture = std::make_unique<sf::Texture>();
 
    
-    if (!this->backgroundTexture->loadFromFile("Assets/image/vn/tutorial-background.png")) {
+    if (!this->backgroundTexture->loadFromFile("Assets/image/"+ngonngu[g_language]+"/tutorial-background.png")) {
         std::cout << "khong the mo tutorialbackground" << '\n';
     }
 

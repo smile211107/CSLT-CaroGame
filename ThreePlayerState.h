@@ -3,6 +3,7 @@
 #include "Button.h"
 #include "GameState.h"
 #include "PlayerNameInput.h"
+#include "SettingsState.h"
 #include <SFML/Graphics.hpp>
 #include <memory>
 #include <iostream>

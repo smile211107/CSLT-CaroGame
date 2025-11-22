@@ -1,4 +1,5 @@
 #include "PlayerNameInput.h"
+#include "SettingsState.h"
 #include <iostream>
 #include <memory>
 std::string playerNames[4];

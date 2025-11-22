@@ -1,4 +1,5 @@
 ﻿#include "AboutState.h"
+#include "SettingsState.h"
 #include "Button.h"
 #include <iostream>
 using namespace std;
@@ -17,7 +18,7 @@ AboutState::AboutState(sf::RenderWindow& window, sf::Font& font)
     this->backgroundTexture = std::make_unique<sf::Texture>();
 
   
-    if (!this->backgroundTexture->loadFromFile("Assets/image/vn/about-background.png")) {
+    if (!this->backgroundTexture->loadFromFile("Assets/image/"+ngonngu[g_language]+"/about-background.png")) {
         cout << "khong the mo Aboutbackground" << '\n';
     }
 

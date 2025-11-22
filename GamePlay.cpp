@@ -296,7 +296,7 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
 
 
     gameplayMusic.setLooping(true);
-    gameplayMusic.setVolume(30);
+    gameplayMusic.setVolume(g_musicOn*30);
     gameplayMusic.play();
 
     gameplayBackgroundTexture = std::make_unique<sf::Texture>();
@@ -325,7 +325,7 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
     this->textureOWin = std::make_unique<sf::Texture>();
     this->textureVWin = std::make_unique<sf::Texture>();
     this->texturePauseBox = std::make_unique<sf::Texture>();
-    if (!this->texturePauseBox->loadFromFile("Assets/image/vn/pause-box.png")) {
+    if (!this->texturePauseBox->loadFromFile("Assets/image/"+ngonngu[g_language]+"/pause-box.png")) {
         cout << "khong tai duoc pause box" << '\n';
 
     };
@@ -341,23 +341,23 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
         cout << "khong tai duoc icon x" << '\n';
 
     };
-    if (!this->textureOWin->loadFromFile("Assets/image/vn/o-win.png")) {
+    if (!this->textureOWin->loadFromFile("Assets/image/"+ngonngu[g_language]+"/o-win.png")) {
         cout << "khong tai duoc win o" << '\n';
 
     };
-    if (!this->textureXWin->loadFromFile("Assets/image/vn/x-win.png")) {
+    if (!this->textureXWin->loadFromFile("Assets/image/"+ngonngu[g_language]+"/x-win.png")) {
         cout << "khong tai duoc win x" << '\n';
 
     };
-    if (!this->textureVWin->loadFromFile("Assets/image/vn/v-win.png")) {
+    if (!this->textureVWin->loadFromFile("Assets/image/"+ngonngu[g_language]+"/v-win.png")) {
         cout << "khong tai duoc win v" << '\n';
 
     };
-    if (!this->textureTwoDraw->loadFromFile("Assets/image/vn/draw-2player.png")) {
+    if (!this->textureTwoDraw->loadFromFile("Assets/image/"+ngonngu[g_language]+"/draw-2player.png")) {
         cout << "khong tai duoc draw2" << '\n';
 
     };
-    if (!this->textureThreeDraw->loadFromFile("Assets/image/vn/draw-3player.png")) {
+    if (!this->textureThreeDraw->loadFromFile("Assets/image/"+ngonngu[g_language]+"/draw-3player.png")) {
         cout << "khong tai duoc draw3" << '\n';
 
     };
@@ -524,7 +524,7 @@ void Gameplay::handleEvent(const sf::Event& event) {
             else if (key->scancode == sf::Keyboard::Scancode::Space)
                 //|| key->scancode == sf::Keyboard::Scancode::Space)
             {
-                playSound.setVolume(75);
+                playSound.setVolume(g_soundOn*75);
                 playSound.play();
 
                 int y = cursorY;
@@ -569,7 +569,7 @@ void Gameplay::handleEvent(const sf::Event& event) {
                         line.setRotation(angle);*/
                         //window.draw(line);
                         cout << startPoint.x << ' ' << startPoint.y << ' ' << endPoint.x << ' ' << endPoint.y << '\n';
-                        winSound.setVolume(75);
+                        winSound.setVolume(g_soundOn*75);
                         winSound.play();
                         if (currentPlayer == 1)
                         {
@@ -603,7 +603,7 @@ void Gameplay::handleEvent(const sf::Event& event) {
 
                 }
                 else {
-                    playSoundWrong.setVolume(75);
+                    playSoundWrong.setVolume(g_soundOn*75);
                     playSoundWrong.play();
                 }
 
