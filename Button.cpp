@@ -59,10 +59,20 @@ void Button::update(sf::Vector2f mousePos) {
         buttonShape.setFillColor(sf::Color(255, 255, 255, static_cast<uint8_t>(400)));
     }
 }
-void Button::setSelected(bool selected)
-{
-    isSelected = selected;
+// void Button::setSelected(bool selected)
+// {
+//     isSelected = selected;
+// }
+
+// demo change language button
+void Button::setSelected(bool selected) {
+    this->isSelected = selected;
+    if (selected)
+        this->buttonShape.setFillColor(sf::Color(255, 200, 0)); // vàng khi chọn
+    else
+        this->buttonShape.setFillColor(sf::Color(150, 150, 150)); // xám khi không chọn
 }
+
 void Button::render(sf::RenderTarget& target) const {
     target.draw(this->buttonShape);
     target.draw(this->buttonText);

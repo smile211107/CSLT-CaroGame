@@ -23,7 +23,9 @@ private:
     Button buttonBack;
     Button buttonMusic;
     Button buttonSound;
-    Button buttonLanguage;
+    Button buttonVN;
+    Button buttonEN;
+
 
     GameState nextState;
 

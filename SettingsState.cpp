@@ -19,11 +19,11 @@ SettingsState::SettingsState(sf::RenderWindow& window, sf::Font& font)
                   { window.getSize().x / 2.f, window.getSize().y * 0.5f }),
       buttonSound("Sound: " + std::string(g_soundOn ? "ON" : "OFF"),
                   font, BUTTON_SIZE,
-                  { window.getSize().x / 2.f, window.getSize().y * 0.65f }), 
-      buttonLanguage("Language: " + std::string(g_language ? "EN" : "VN"),
-               font, BUTTON_SIZE,
-               { window.getSize().x / 2.f, window.getSize().y * 0.35f })
-
+                  { window.getSize().x / 2.f, window.getSize().y * 0.65f }),
+      buttonVN("Tieng Viet", font, BUTTON_SIZE,
+               { window.getSize().x / 2.f - 220.f, window.getSize().y * 0.35f }),
+      buttonEN("English", font, BUTTON_SIZE,
+               { window.getSize().x / 2.f + 220.f, window.getSize().y * 0.35f })
 {
 
     this->nextState = GameState::Settings;
@@ -59,9 +59,11 @@ void SettingsState::handleEvent(const sf::Event& event) {
                 g_soundOn = !g_soundOn;
                 this->buttonSound.setLabel("Sound: " + std::string(g_soundOn ? "ON" : "OFF"));
             }
-            if (this->buttonLanguage.isMouseOver(mousePos)) {
-                g_language = !g_language;
-                this->buttonLanguage.setLabel("Language: " + std::string(g_language ? "EN" : "VN"));
+            if (this->buttonVN.isMouseOver(mousePos)) {
+                g_language = false;  // 0 = VN
+            }
+            if (this->buttonEN.isMouseOver(mousePos)) {
+                g_language = true;   // 1 = EN
             }
 
             // Back
@@ -77,7 +79,20 @@ void SettingsState::update(sf::Vector2f mousePos) {
     this->buttonBack.update(mousePos);
     this->buttonMusic.update(mousePos);
     this->buttonSound.update(mousePos);
-    this->buttonLanguage.update(mousePos);
+    this->buttonVN.update(mousePos);
+    this->buttonEN.update(mousePos);
+
+    if (g_language == 0) { // VN
+        buttonVN.setSelected(true);
+        buttonEN.setSelected(false);
+    } 
+    else { // EN
+        buttonVN.setSelected(false);
+        buttonEN.setSelected(true);
+    }
+
+    
+
 }
 
 void SettingsState::render(sf::RenderTarget& target) {
@@ -85,7 +100,9 @@ void SettingsState::render(sf::RenderTarget& target) {
     this->buttonMusic.render(target);
     this->buttonBack.render(target);
     this->buttonSound.render(target);
-    this->buttonLanguage.render(target);
+    this->buttonVN.render(target);
+    this->buttonEN.render(target);
+
 }
 
 GameState SettingsState::getNextState() {
