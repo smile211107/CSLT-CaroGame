@@ -1,4 +1,5 @@
 ﻿#include "NewGameState.h"
+#include "SettingsState.h"
 #include <iostream>
 #include <memory>
 const sf::Vector2f PLAYER_BUTTON_SIZE = { 400.f, 50.f };
@@ -9,19 +10,19 @@ NewGameState::NewGameState(sf::RenderWindow& window, sf::Font& font)
 
   
 {
-    if (!buttonTwoPlayerTexture.loadFromFile("Assets/image/vn/2players-button.png")) {
+    if (!buttonTwoPlayerTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/2players-button.png")) {
         std::cout << "khong the mo 2playersbutton" << '\n';
     }
     buttonTwoPlayer = std::make_unique<Button>(buttonTwoPlayerTexture,
         sf::Vector2f(window.getSize().x * 0.35f, window.getSize().y * 0.7f));
 
-    if (!buttonThreePlayerTexture.loadFromFile("Assets/image/vn/3players-button.png")) {
+    if (!buttonThreePlayerTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/3players-button.png")) {
         std::cout << "khong the mo 3players" << '\n';
     }
     buttonThreePlayer = std::make_unique<Button>(buttonThreePlayerTexture,
         sf::Vector2f(window.getSize().x * 0.65f, window.getSize().y * 0.7f));
 
-    if (!buttonBackTexture.loadFromFile("Assets/image/vn/return-button.png")) {
+    if (!buttonBackTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/return-button.png")) {
         std::cout << "khong the mo buttonBack" << '\n';
     }
     buttonBack = std::make_unique<Button>(buttonBackTexture,
@@ -37,7 +38,7 @@ NewGameState::NewGameState(sf::RenderWindow& window, sf::Font& font)
     backgroundTexture = std::make_unique<sf::Texture>();
 
 
-    if (!backgroundTexture->loadFromFile("assets/image/vn/selectMode-background.png")) {
+    if (!backgroundTexture->loadFromFile("assets/image/"+ngonngu[g_language]+"/selectMode-background.png")) {
         std::cout << "khong the mo menubackground" << '\n';
     }
 

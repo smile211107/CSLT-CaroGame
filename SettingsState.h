@@ -6,6 +6,10 @@
 
 // Biến toàn cục cho trạng thái nhạc
 extern bool g_musicOn;
+extern bool g_soundOn;
+extern bool g_language;
+
+extern std::string ngonngu[2];
 
 class SettingsState : public State {
 private:
@@ -16,9 +20,18 @@ private:
     std::unique_ptr<sf::Sprite> backgroundSprite;
 
     std::unique_ptr<Button> buttonMusic;
+    std::unique_ptr<Button> buttonSound;
+    std::unique_ptr<Button> buttonVN;
+    std::unique_ptr<Button> buttonEN;
     std::unique_ptr<Button> buttonBack;
     sf::Texture onMusicTexture;
     sf::Texture offMusicTexture;
+    sf::Texture onSoundTexture;
+    sf::Texture offSoundTexture;
+    sf::Texture offENTexture;
+    sf::Texture offVNTexture;
+    sf::Texture onENTexture;
+    sf::Texture onVNTexture;
     sf::Texture buttonBackTexture;
 
     GameState nextState;

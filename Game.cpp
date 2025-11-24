@@ -41,11 +41,9 @@ Game::Game()
     currentStateEnum = GameState::MainMenu;
   
     currentState = std::make_unique<MainMenuState>(window, font);
-    if (g_musicOn){
-        mainMenuMusic.setLooping(true);
-        mainMenuMusic.setVolume(50);
-        mainMenuMusic.play();
-    }
+    mainMenuMusic.setLooping(true);
+    mainMenuMusic.setVolume(g_musicOn * 50);
+    mainMenuMusic.play();
 }
 
 void Game::run() {
@@ -69,6 +67,7 @@ void Game::run() {
                 mainMenuMusic.play();
             else
                 mainMenuMusic.stop();
+            mainMenuMusic.setVolume(g_musicOn * 50);
         }
 
         prevState = currentStateEnum;
@@ -86,12 +85,14 @@ void Game::changeState(GameState newState) {
         // Bật nhạc menu nếu g_musicOn = true và nhạc chưa phát
         if (g_musicOn)
             mainMenuMusic.play();
+        mainMenuMusic.setVolume(g_musicOn * 50);
         break;
 
     case GameState::NewGame:
         currentState = std::make_unique<NewGameState>(window, font);
         if (g_musicOn)
             mainMenuMusic.play();
+        mainMenuMusic.setVolume(g_musicOn * 50);
         break;
 
     case GameState::Exiting:
@@ -124,6 +125,7 @@ void Game::changeState(GameState newState) {
         currentState = std::make_unique<LoadGameState>(window, font);
         if (g_musicOn)
             mainMenuMusic.play();
+        mainMenuMusic.setVolume(g_musicOn * 50);
         break;
 
     case GameState::Tutorials:

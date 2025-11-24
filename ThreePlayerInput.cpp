@@ -1,4 +1,5 @@
 ﻿#include "PlayerNameInput.h"
+#include "SettingsState.h"
 #include "ThreePlayerState.h"
 #include "Button.h"
 #include <iostream>
@@ -42,7 +43,7 @@ ThreePlayerState::ThreePlayerState(sf::RenderWindow& window, sf::Font& font)
     )
 
 {
-    if (!buttonBackTexture.loadFromFile("Assets/image/vn/return-button.png")) {
+    if (!buttonBackTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/return-button.png")) {
         std::cout << "khong the mo buttonBack" << '\n';
     }
     buttonBack = std::make_unique<Button>(buttonBackTexture,
@@ -81,7 +82,7 @@ ThreePlayerState::ThreePlayerState(sf::RenderWindow& window, sf::Font& font)
     threePlayerBackgroundTexture = std::make_unique<sf::Texture>();
 
 
-    if (!threePlayerBackgroundTexture->loadFromFile("Assets/Image/vn/typeName3-background.png")) {
+    if (!threePlayerBackgroundTexture->loadFromFile("Assets/Image/"+ngonngu[g_language]+"/typeName3-background.png")) {
         std::cout << "khong the mo menubackground" << '\n';
     }
 

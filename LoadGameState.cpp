@@ -1,4 +1,5 @@
 ﻿#include "LoadGameState.h"
+#include "SettingsState.h"
 #include "Button.h"
 #include <iostream>
 #include <string>
@@ -18,7 +19,7 @@ LoadGameState::LoadGameState(sf::RenderWindow& window, sf::Font& font)
 
 
 {
-    if (!buttonBackTexture.loadFromFile("Assets/image/vn/return-button.png")) {
+    if (!buttonBackTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/return-button.png")) {
         std::cout << "khong the mo buttonBack" << '\n';
     }
     buttonBack = std::make_unique<Button>(buttonBackTexture,
@@ -29,7 +30,7 @@ LoadGameState::LoadGameState(sf::RenderWindow& window, sf::Font& font)
     backgroundTexture = std::make_unique<sf::Texture>();
 
 
-    if (!backgroundTexture->loadFromFile("Assets/image/vn/loadGame-background.png")) {
+    if (!backgroundTexture->loadFromFile("Assets/image/"+ngonngu[g_language]+"/loadGame-background.png")) {
         cout << "khong the mo loadgame background" << '\n';
     }
 

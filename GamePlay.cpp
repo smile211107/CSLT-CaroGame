@@ -16,7 +16,7 @@ int result = 0;
 bool isPause = false, endGame = false;
 const int margin = 30, playerSize = 50;
 const sf::Vector2f BUTTON_SIZE = { 400.0F, 60.f };
-const float GAP = 90.0f;
+const float GAP = 120.0f;
 float length = 0;
 sf::RectangleShape line(sf::Vector2f(length, 5.f));
 pair<int, int> pointOne = { 1,1 }, pointFive = { 1,0 };
@@ -195,36 +195,36 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
     
 
 {
-    if (!buttonPauseSaveTexture.loadFromFile("Assets/image/vn/save-button.png")) {
+    if (!buttonPauseSaveTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/save-button.png")) {
         std::cout << "khong the mo buttonPauseSaveTexture" << '\n';
     }
-    if (!buttonPauseResumeTexture.loadFromFile("Assets/image/vn/resume-button.png")) {
+    if (!buttonPauseResumeTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/resume-button.png")) {
         std::cout << "khong the mo buttonPauseSaveTexture" << '\n';
     }
-    if (!buttonPauseQuitTexture.loadFromFile("Assets/image/vn/quit-button.png")) {
+    if (!buttonPauseQuitTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/quit-button.png")) {
         std::cout << "khong the mo buttonPauseSaveTexture" << '\n';
     }
-    if (!buttonPauseRestartTexture.loadFromFile("Assets/image/vn/restart-button.png")) {
+    if (!buttonPauseRestartTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/restart-button.png")) {
         std::cout << "khong the mo buttonPauseSaveTexture" << '\n';
     }
-    if (!buttonNewGameTexture.loadFromFile("Assets/image/vn/nextRound-button.png")) {
+    if (!buttonNewGameTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/nextRound-button.png")) {
         std::cout << "khong the mo nextRoundtexture" << '\n';
     }
-    if (!buttonSaveGameTexture.loadFromFile("Assets/image/vn/save-button.png")) {
+    if (!buttonSaveGameTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/save-button.png")) {
         std::cout << "khong the mo savegametexture" << '\n';
     }
-    if (!buttonExitTexture.loadFromFile("Assets/image/vn/quit-button.png")) {
+    if (!buttonExitTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/quit-button.png")) {
         std::cout << "khong the mo quittexture" << '\n';
     }
     //BUTTON PAUSE GAME
     buttonPauseSave = std::make_unique<Button>(buttonPauseSaveTexture,
-        sf::Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.5f + (GAP * 0) +30));
+        sf::Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.35f + (GAP * 0) +30));
     buttonPauseResume = std::make_unique<Button>(buttonPauseResumeTexture,
-        sf::Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.5f + (GAP * 1) + 30));
+        sf::Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.35f + (GAP * 1) + 30));
     buttonPauseRestart = std::make_unique<Button>(buttonPauseRestartTexture,
-        sf::Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.5f + (GAP * 2) + 30));
+        sf::Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.35f + (GAP * 2) + 30));
     buttonPauseQuit = std::make_unique<Button>(buttonPauseQuitTexture,
-        sf::Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.5f + (GAP * 3) + 30));
+        sf::Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.35f + (GAP * 3) + 30));
 
     pauseButtons.push_back(move(buttonPauseSave));
     pauseButtons.push_back(move(buttonPauseResume));
@@ -338,7 +338,7 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
 
 
     gameplayMusic.setLooping(true);
-    gameplayMusic.setVolume(30);
+    gameplayMusic.setVolume(g_musicOn * 30);
     gameplayMusic.play();
 
     gameplayBackgroundTexture = std::make_unique<sf::Texture>();
@@ -367,7 +367,7 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
     textureOWin = std::make_unique<sf::Texture>();
     textureVWin = std::make_unique<sf::Texture>();
     texturePauseBox = std::make_unique<sf::Texture>();
-    if (!texturePauseBox->loadFromFile("Assets/image/vn/pause-box.png")) {
+    if (!texturePauseBox->loadFromFile("Assets/image/"+ngonngu[g_language]+"/pause-box.png")) {
         cout << "khong tai duoc pause box" << '\n';
 
     };
@@ -383,23 +383,23 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
         cout << "khong tai duoc icon x" << '\n';
 
     };
-    if (!textureOWin->loadFromFile("Assets/image/vn/o-win.png")) {
+    if (!textureOWin->loadFromFile("Assets/image/"+ngonngu[g_language]+"/o-win.png")) {
         cout << "khong tai duoc win o" << '\n';
 
     };
-    if (!textureXWin->loadFromFile("Assets/image/vn/x-win.png")) {
+    if (!textureXWin->loadFromFile("Assets/image/"+ngonngu[g_language]+"/x-win.png")) {
         cout << "khong tai duoc win x" << '\n';
 
     };
-    if (!textureVWin->loadFromFile("Assets/image/vn/v-win.png")) {
+    if (!textureVWin->loadFromFile("Assets/image/"+ngonngu[g_language]+"/v-win.png")) {
         cout << "khong tai duoc win v" << '\n';
 
     };
-    if (!textureTwoDraw->loadFromFile("Assets/image/vn/draw-2player.png")) {
+    if (!textureTwoDraw->loadFromFile("Assets/image/"+ngonngu[g_language]+"/draw-2player.png")) {
         cout << "khong tai duoc draw2" << '\n';
 
     };
-    if (!textureThreeDraw->loadFromFile("Assets/image/vn/draw-3player.png")) {
+    if (!textureThreeDraw->loadFromFile("Assets/image/"+ngonngu[g_language]+"/draw-3player.png")) {
         cout << "khong tai duoc draw3" << '\n';
 
     };
@@ -605,7 +605,7 @@ void Gameplay::handleEvent(const sf::Event& event) {
             else if (key->scancode == sf::Keyboard::Scancode::Space)
              
             {
-                playSound.setVolume(75);
+                playSound.setVolume(g_soundOn * 75);
                 playSound.play();
 
                 int y = cursorY;
@@ -650,7 +650,7 @@ void Gameplay::handleEvent(const sf::Event& event) {
                         line.setRotation(angle);*/
                         //window.draw(line);
                         cout << startPoint.x << ' ' << startPoint.y << ' ' << endPoint.x << ' ' << endPoint.y << '\n';
-                        winSound.setVolume(75);
+                        winSound.setVolume(g_soundOn * 75);
                         winSound.play();
                         if (currentPlayer == 1)
                         {
@@ -684,7 +684,7 @@ void Gameplay::handleEvent(const sf::Event& event) {
 
                 }
                 else {
-                    playSoundWrong.setVolume(75);
+                    playSoundWrong.setVolume(g_soundOn * 75);
                     playSoundWrong.play();
                 }
 

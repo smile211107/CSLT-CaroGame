@@ -1,4 +1,5 @@
 ﻿#include "TutorialState.h"
+#include "SettingsState.h"
 #include <iostream>
 
 const sf::Vector2f PLAYER_BUTTON_SIZE = { 400.f, 50.f };
@@ -10,7 +11,7 @@ TutorialState::TutorialState(sf::RenderWindow& window, sf::Font& font)
    
    
 {
-    if (!buttonBackTexture.loadFromFile("Assets/image/vn/return-button.png")) {
+    if (!buttonBackTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/return-button.png")) {
         std::cout << "khong the mo buttonBack" << '\n';
     }
     buttonBack = std::make_unique<Button>(buttonBackTexture,
@@ -21,7 +22,7 @@ TutorialState::TutorialState(sf::RenderWindow& window, sf::Font& font)
     backgroundTexture = std::make_unique<sf::Texture>();
 
    
-    if (!backgroundTexture->loadFromFile("Assets/image/vn/tutorial-background.png")) {
+    if (!backgroundTexture->loadFromFile("Assets/image/"+ngonngu[g_language]+"/tutorial-background.png")) {
         std::cout << "khong the mo tutorialbackground" << '\n';
     }
 

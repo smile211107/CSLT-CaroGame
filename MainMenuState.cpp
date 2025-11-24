@@ -26,27 +26,27 @@ MainMenuState::MainMenuState(sf::RenderWindow& window, sf::Font& font)
 
 {
     //buttonNewGameTexture = std::make_unique<sf::Texture>();
-    if (!buttonNewGameTexture.loadFromFile("Assets/image/vn/newGame-button.png")) {
+    if (!buttonNewGameTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/newGame-button.png")) {
         std::cout << "khong the mo newgametexture" << '\n';
     }
     //buttonLoadGameTexture = std::make_unique<sf::Texture>();
-    if (!buttonLoadGameTexture.loadFromFile("Assets/image/vn/loadGame-button.png")) {
+    if (!buttonLoadGameTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/loadGame-button.png")) {
 
     }
     //buttonTutorialsTexture = std::make_unique<sf::Texture>();
-    if (!buttonTutorialsTexture.loadFromFile("Assets/image/vn/tutorial-button.png")) {
+    if (!buttonTutorialsTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/tutorial-button.png")) {
 
     }
     //buttonAboutUsTexture = std::make_unique<sf::Texture>();
-    if (!buttonAboutUsTexture.loadFromFile("Assets/image/vn/aboutUs-button.png")) {
+    if (!buttonAboutUsTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/aboutUs-button.png")) {
 
     }
     //buttonSettingsTexture = std::make_unique<sf::Texture>();
-    if (!buttonSettingsTexture.loadFromFile("Assets/image/vn/settings-button.png")) {
+    if (!buttonSettingsTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/settings-button.png")) {
 
     }
     //buttonExitTexture = std::make_unique<sf::Texture>();
-    if (!buttonExitTexture.loadFromFile("Assets/image/vn/exit-button.png")) {
+    if (!buttonExitTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/exit-button.png")) {
 
     }
     buttonNewGame = std::make_unique<Button>(buttonNewGameTexture,

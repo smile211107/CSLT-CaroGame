@@ -15,7 +15,7 @@ private:
     sf::Text text;
     std::string currentText;
     bool isActive;
-    std::vector<Button*> menuButtons;
+    std::vector<std::unique_ptr<Button>> menuButtons;
     int selectedButtonIndex;
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 

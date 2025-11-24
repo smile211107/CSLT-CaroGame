@@ -1,4 +1,5 @@
 ﻿#include "AboutState.h"
+#include "SettingsState.h"
 #include "Button.h"
 #include <iostream>
 using namespace std;
@@ -9,18 +10,18 @@ AboutState::AboutState(sf::RenderWindow& window, sf::Font& font)
     font(font)
 
 {
-    if (!buttonBackTexture.loadFromFile("Assets/image/vn/return-button.png")) {
+    if (!buttonBackTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/return-button.png")) {
         std::cout << "khong the mo buttonBack" << '\n';
     }
     buttonBack = std::make_unique<Button>(buttonBackTexture,
         sf::Vector2f(window.getSize().x / 2.0f, window.getSize().y * 0.92f));
 
     nextState = GameState::AboutUs;
-        cout << "Da vao trang AboutUs!" << std::endl;
+    cout << "Da vao trang AboutUs!" << std::endl;
     backgroundTexture = std::make_unique<sf::Texture>();
 
-  
-    if (!backgroundTexture->loadFromFile("Assets/image/vn/about-background.png")) {
+
+    if (!this->backgroundTexture->loadFromFile("Assets/image/" + ngonngu[g_language] + "/about-background.png")) {
         cout << "khong the mo Aboutbackground" << '\n';
     }
 
