@@ -1,0 +1,11 @@
+# Visual Studio and C++ build/cache files
+.vs/
+*.ipch
+*.user
+*.suo
+*.VC.db
+*.sdf
+ipch/
+
+# Binaries and object files
+*.obj
