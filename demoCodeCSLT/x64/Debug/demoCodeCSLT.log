@@ -1,0 +1,35 @@
+﻿  AboutState.cpp
+  AboutState.h
+  Button.cpp
+  Game.cpp
+  Game.h
+  GamePlay.cpp
+F:\CSLT-CaroGame-addSaveLoad\GamePlay.cpp(337,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  LoadGameState.cpp
+  main.cpp
+  MainMenuState.cpp
+  MainMenuState.h
+  NewGameState.cpp
+F:\CSLT-CaroGame-addSaveLoad\NewGameState.cpp(66,82): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  NewGameState.h
+  PlayerNameInput.cpp
+  PlayerNameInput.h
+  SaveState.cpp
+  SettingsState.cpp
+F:\CSLT-CaroGame-addSaveLoad\SettingsState.cpp(92,69): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  TextButton.cpp
+  ThreePlayerInput.cpp
+F:\CSLT-CaroGame-addSaveLoad\ThreePlayerInput.cpp(123,83): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  ThreePlayerState.h
+  TutorialState.cpp
+  Generating Code...
+  Compiling...
+  TwoPlayerState.cpp
+F:\CSLT-CaroGame-addSaveLoad\TwoPlayerState.cpp(132,81): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
+demoCodeCSLT\x64\Debug\AboutState.obj : warning LNK4042: object specified more than once; extras ignored
+demoCodeCSLT\x64\Debug\Game.obj : warning LNK4042: object specified more than once; extras ignored
+demoCodeCSLT\x64\Debug\MainMenuState.obj : warning LNK4042: object specified more than once; extras ignored
+demoCodeCSLT\x64\Debug\NewGameState.obj : warning LNK4042: object specified more than once; extras ignored
+demoCodeCSLT\x64\Debug\PlayerNameInput.obj : warning LNK4042: object specified more than once; extras ignored
+  demoCodeCSLT.vcxproj -> F:\CSLT-CaroGame-addSaveLoad\x64\Debug\demoCodeCSLT.exe
