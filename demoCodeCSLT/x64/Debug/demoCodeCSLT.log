@@ -1,17 +1,2 @@
-﻿  Game.cpp
-E:\coding 25-26\CSLT\CSLT-CaroGame-addPauseButton\Game.cpp(47,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\coding 25-26\CSLT\CSLT-CaroGame-addPauseButton\Game.cpp(72,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\coding 25-26\CSLT\CSLT-CaroGame-addPauseButton\Game.cpp(89,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\coding 25-26\CSLT\CSLT-CaroGame-addPauseButton\Game.cpp(95,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\coding 25-26\CSLT\CSLT-CaroGame-addPauseButton\Game.cpp(103,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\coding 25-26\CSLT\CSLT-CaroGame-addPauseButton\Game.cpp(108,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\coding 25-26\CSLT\CSLT-CaroGame-addPauseButton\Game.cpp(114,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\coding 25-26\CSLT\CSLT-CaroGame-addPauseButton\Game.cpp(119,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\coding 25-26\CSLT\CSLT-CaroGame-addPauseButton\Game.cpp(124,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\coding 25-26\CSLT\CSLT-CaroGame-addPauseButton\Game.cpp(130,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\coding 25-26\CSLT\CSLT-CaroGame-addPauseButton\Game.cpp(134,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\coding 25-26\CSLT\CSLT-CaroGame-addPauseButton\Game.cpp(138,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  GamePlay.cpp
-E:\coding 25-26\CSLT\CSLT-CaroGame-addPauseButton\GamePlay.cpp(336,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
-  demoCodeCSLT.vcxproj -> E:\coding 25-26\CSLT\CSLT-CaroGame-addPauseButton\x64\Debug\demoCodeCSLT.exe
+﻿  Button.cpp
+  demoCodeCSLT.vcxproj -> E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\x64\Debug\demoCodeCSLT.exe

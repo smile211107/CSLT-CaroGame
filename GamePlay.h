@@ -11,6 +11,7 @@ using namespace std;
 const int BOARD_WIDTH = 13;
 const int BOARD_HEIGHT = 13;
 
+
 const float CURSOR_THICKNESS = 4.0f;
 
 class Gameplay : public State {
@@ -104,12 +105,17 @@ private:
     std::unique_ptr<Button> buttonPauseResume;
     std::unique_ptr<Button> buttonPauseRestart;
     std::unique_ptr<Button> buttonPauseQuit;
+    std::unique_ptr<Button> buttonMusic;
+    std::unique_ptr<Button> buttonSound;
 
     sf::Texture buttonPauseSaveTexture;
     sf::Texture buttonPauseResumeTexture;
     sf::Texture buttonPauseRestartTexture;
     sf::Texture buttonPauseQuitTexture;
-
+    sf::Texture onMusicTexture;
+    sf::Texture offMusicTexture;
+    sf::Texture onSoundTexture;
+    sf::Texture offSoundTexture;
 
     std::unique_ptr<sf::Sprite> buttonPauseSaveSprite;
     std::unique_ptr<sf::Sprite> buttonPauseReturnSprite;

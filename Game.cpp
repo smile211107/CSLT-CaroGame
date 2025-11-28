@@ -44,7 +44,7 @@ Game::Game()
   
     currentState = std::make_unique<MainMenuState>(window, font);
     mainMenuMusic.setLooping(true);
-    mainMenuMusic.setVolume(g_musicOn * 50);
+    mainMenuMusic.setVolume(g_musicOn * 60);
     mainMenuMusic.play();
 }
 
@@ -69,7 +69,7 @@ void Game::run() {
                 mainMenuMusic.play();
             else
                 mainMenuMusic.stop();*/
-            mainMenuMusic.setVolume(g_musicOn * 50);
+            mainMenuMusic.setVolume(g_musicOn * 60);
         }
 
         prevState = currentStateEnum;
@@ -86,13 +86,13 @@ void Game::changeState(GameState newState) {
         currentState = std::make_unique<MainMenuState>(window, font);
         // Bật nhạc menu nếu g_musicOn = true và nhạc chưa phát
         
-        mainMenuMusic.setVolume(g_musicOn * 50);
+        mainMenuMusic.setVolume(g_musicOn * 60);
         break;
 
     case GameState::NewGame:
         currentState = std::make_unique<NewGameState>(window, font);
       
-        mainMenuMusic.setVolume(g_musicOn * 50);
+        mainMenuMusic.setVolume(g_musicOn * 60);
         break;
 
     case GameState::Exiting:
@@ -100,12 +100,12 @@ void Game::changeState(GameState newState) {
         break;
 
     case GameState::Settings:
-        mainMenuMusic.setVolume(g_musicOn * 50);
+        mainMenuMusic.setVolume(g_musicOn * 60);
         currentState = std::make_unique<SettingsState>(window, font);
         break;
 
     case GameState::TwoPlayer:
-        mainMenuMusic.setVolume(g_musicOn * 50);
+        mainMenuMusic.setVolume(g_musicOn * 60);
         currentState = std::make_unique<TwoPlayerState>(window, font);
 
         break;
@@ -116,26 +116,26 @@ void Game::changeState(GameState newState) {
         break;
 
     case GameState::ThreePlayer:
-        mainMenuMusic.setVolume(g_musicOn * 50);
+        mainMenuMusic.setVolume(g_musicOn * 60);
         currentState = std::make_unique<ThreePlayerState>(window, font);
         break;
 
     case GameState::AboutUs:
-        mainMenuMusic.setVolume(g_musicOn * 50);
+        mainMenuMusic.setVolume(g_musicOn * 60);
         currentState = std::make_unique<AboutState>(window, font);
         break;
 
     case GameState::LoadGame:
         currentState = std::make_unique<LoadState>(window, font);
-        mainMenuMusic.setVolume(g_musicOn * 50);
+        mainMenuMusic.setVolume(g_musicOn * 60);
         break;
 
     case GameState::Tutorials:
-        mainMenuMusic.setVolume(g_musicOn * 50);
+        mainMenuMusic.setVolume(g_musicOn * 60);
         currentState = std::make_unique<TutorialState>(window, font);
         break;
     case GameState::Saving:
-        mainMenuMusic.setVolume(g_musicOn * 50);
+        mainMenuMusic.setVolume(g_musicOn * 60);
         currentState = std::make_unique<SaveState>(window, font);
         break;
     }

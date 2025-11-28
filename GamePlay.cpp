@@ -195,14 +195,27 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
         std::cout << "khong the mo buttonPauseSaveTexture" << '\n';
     }
     if (!buttonPauseResumeTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/resume-button.png")) {
-        std::cout << "khong the mo buttonPauseSaveTexture" << '\n';
+        std::cout << "khong the mo buttonPauseResumeTexture" << '\n';
     }
     if (!buttonPauseQuitTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/quit-button.png")) {
-        std::cout << "khong the mo buttonPauseSaveTexture" << '\n';
+        std::cout << "khong the mo buttonPauseQuitTexture" << '\n';
     }
     if (!buttonPauseRestartTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/restart-button.png")) {
-        std::cout << "khong the mo buttonPauseSaveTexture" << '\n';
+        std::cout << "khong the mo buttonPauseRestartTexture" << '\n';
     }
+    if (!onMusicTexture.loadFromFile("Assets/image/" + ngonngu[g_language] + "/on-music-button.png")) {
+        std::cout << "khong the mo on musicbutton" << '\n';
+    }
+    if (!offMusicTexture.loadFromFile("Assets/image/" + ngonngu[g_language] + "/off-music-button.png")) {
+        std::cout << "khong the mo off musicbutton" << '\n';
+    }
+    if (!onSoundTexture.loadFromFile("Assets/image/" + ngonngu[g_language] + "/on-sfx-button.png")) {
+        std::cout << "khong the mo on sfxbutton" << '\n';
+    }
+    if (!offSoundTexture.loadFromFile("Assets/image/" + ngonngu[g_language] + "/off-sfx-button.png")) {
+        std::cout << "khong the mo off sfxbutton" << '\n';
+    }
+
     if (!buttonNewGameTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/nextRound-button.png")) {
         std::cout << "khong the mo nextRoundtexture" << '\n';
     }
@@ -214,27 +227,33 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
     }
     //BUTTON PAUSE GAME
     buttonPauseSave = std::make_unique<Button>(buttonPauseSaveTexture,
-        sf::Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.35f + (GAP * 0) +30));
+        sf::Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.35f + (GAP * 0) +20));
     buttonPauseResume = std::make_unique<Button>(buttonPauseResumeTexture,
-        sf::Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.35f + (GAP * 1) + 30));
+        sf::Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.35f + (GAP * 1) + 20));
     buttonPauseRestart = std::make_unique<Button>(buttonPauseRestartTexture,
-        sf::Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.35f + (GAP * 2) + 30));
+        sf::Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.35f + (GAP * 2) + 20));
     buttonPauseQuit = std::make_unique<Button>(buttonPauseQuitTexture,
-        sf::Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.35f + (GAP * 3) + 30));
+        sf::Vector2f(window.getSize().x * 0.5f, window.getSize().y * 0.35f + (GAP * 3) + 20));
+    buttonMusic = std::make_unique<Button>(g_musicOn ? onMusicTexture : offMusicTexture,
+        sf::Vector2f(window.getSize().x / 2.f - 200, window.getSize().y * 0.35f + (GAP * 4) + 20));
+    buttonSound = std::make_unique<Button>(g_soundOn ? onSoundTexture : offSoundTexture,
+        sf::Vector2f(window.getSize().x / 2.f + 200, window.getSize().y * 0.35f + (GAP * 4) + 20));
 
     pauseButtons.push_back(move(buttonPauseSave));
     pauseButtons.push_back(move(buttonPauseResume));
     pauseButtons.push_back(move(buttonPauseRestart));
     pauseButtons.push_back(move(buttonPauseQuit));
+    pauseButtons.push_back(move(buttonMusic));
+    pauseButtons.push_back(move(buttonSound));
     pauseButtons[selectedButtonIndex]->setSelected(true);
 
 
     buttonNewGame = std::make_unique<Button>(buttonNewGameTexture,
-        sf::Vector2f(window.getSize().x * 0.75f, window.getSize().y * 0.5f + (GAP * 2) + 20));
+        sf::Vector2f(window.getSize().x * 0.75f, window.getSize().y * 0.5f + (GAP * 1.5) + 10));
     buttonSaveGame = std::make_unique<Button>(buttonSaveGameTexture,
-        sf::Vector2f(window.getSize().x * 0.75f, window.getSize().y * 0.5f + (GAP * 3) + 20));
+        sf::Vector2f(window.getSize().x * 0.75f, window.getSize().y * 0.5f + (GAP * 2.5) + 10));
     buttonExit = std::make_unique<Button>(buttonExitTexture,
-        sf::Vector2f(window.getSize().x * 0.75f, window.getSize().y * 0.5f + (GAP * 4) + 20));
+        sf::Vector2f(window.getSize().x * 0.75f, window.getSize().y * 0.5f + (GAP * 3.5) + 10));
 
     endButtons.push_back(move(buttonNewGame));
     endButtons.push_back(move(buttonSaveGame));
@@ -562,6 +581,8 @@ void Gameplay::handleEvent(const sf::Event& event) {
                 // 2 continue game
                 // 3 restart
                 // 4 quit
+                // 5 music
+                // 6 sfx
                 if (selectedButtonIndex == 0) {
                     nextState = GameState::Saving;
                 }
@@ -578,6 +599,15 @@ void Gameplay::handleEvent(const sf::Event& event) {
                 else if (selectedButtonIndex == 3) {
                     nextState = GameState::MainMenu;
                 }
+                else if (selectedButtonIndex == 4) {
+                    g_musicOn = !g_musicOn;  
+                    pauseButtons[4]->setTexture(g_musicOn ? onMusicTexture : offMusicTexture);
+                    gameplayMusic.setVolume(g_musicOn * 30);
+                }
+                else if (selectedButtonIndex == 5) {
+                    g_soundOn = !g_soundOn;
+                    pauseButtons[5]->setTexture(g_soundOn ? onSoundTexture : offSoundTexture);
+                }
 
             }
 
@@ -589,7 +619,12 @@ void Gameplay::handleEvent(const sf::Event& event) {
         }
         if (result > 0 && key->scancode == sf::Keyboard::Scancode::Space)
         {
+            if (!endGame) { 
+                selectedButtonIndex = 0; 
 
+                for (auto& btn : endButtons) btn->setSelected(false);
+                endButtons[0]->setSelected(true);
+            }
             endGame = true;
 
         }
@@ -600,6 +635,9 @@ void Gameplay::handleEvent(const sf::Event& event) {
         if (!isPause && key->scancode == sf::Keyboard::Scancode::Escape)
         {
             isPause = true;
+            selectedButtonIndex = 0;
+            for (auto& btn : pauseButtons) btn->setSelected(false);
+            pauseButtons[0]->setSelected(true);
         }
         if (result == 0 && !isPause)
         {
