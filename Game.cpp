@@ -44,7 +44,7 @@ Game::Game()
   
     currentState = std::make_unique<MainMenuState>(window, font);
     mainMenuMusic.setLooping(true);
-    mainMenuMusic.setVolume(static_cast<float>(g_musicOn) * 50);
+    mainMenuMusic.setVolume(g_musicOn * 50);
     mainMenuMusic.play();
 }
 
@@ -69,7 +69,7 @@ void Game::run() {
                 mainMenuMusic.play();
             else
                 mainMenuMusic.stop();*/
-            mainMenuMusic.setVolume(static_cast<float>(g_musicOn) * 50);
+            mainMenuMusic.setVolume(g_musicOn * 50);
         }
 
         prevState = currentStateEnum;
@@ -86,13 +86,13 @@ void Game::changeState(GameState newState) {
         currentState = std::make_unique<MainMenuState>(window, font);
         // Bật nhạc menu nếu g_musicOn = true và nhạc chưa phát
         
-        mainMenuMusic.setVolume(static_cast<float>(g_musicOn) * 50);
+        mainMenuMusic.setVolume(g_musicOn * 50);
         break;
 
     case GameState::NewGame:
         currentState = std::make_unique<NewGameState>(window, font);
       
-        mainMenuMusic.setVolume(static_cast<float>(g_musicOn) * 50);
+        mainMenuMusic.setVolume(g_musicOn * 50);
         break;
 
     case GameState::Exiting:
@@ -100,42 +100,42 @@ void Game::changeState(GameState newState) {
         break;
 
     case GameState::Settings:
-        mainMenuMusic.setVolume(static_cast<float>(g_musicOn) * 50);
+        mainMenuMusic.setVolume(g_musicOn * 50);
         currentState = std::make_unique<SettingsState>(window, font);
         break;
 
     case GameState::TwoPlayer:
-        mainMenuMusic.setVolume(static_cast<float>(g_musicOn) * 50);
+        mainMenuMusic.setVolume(g_musicOn * 50);
         currentState = std::make_unique<TwoPlayerState>(window, font);
 
         break;
 
     case GameState::Playing:
-        mainMenuMusic.setVolume(static_cast<float>(g_musicOn) * 0);
+        mainMenuMusic.setVolume(g_musicOn * 0);
         currentState = std::make_unique<Gameplay>(window, font);
         break;
 
     case GameState::ThreePlayer:
-        mainMenuMusic.setVolume(static_cast<float>(g_musicOn) * 50);
+        mainMenuMusic.setVolume(g_musicOn * 50);
         currentState = std::make_unique<ThreePlayerState>(window, font);
         break;
 
     case GameState::AboutUs:
-        mainMenuMusic.setVolume(static_cast<float>(g_musicOn) * 50);
+        mainMenuMusic.setVolume(g_musicOn * 50);
         currentState = std::make_unique<AboutState>(window, font);
         break;
 
     case GameState::LoadGame:
         currentState = std::make_unique<LoadState>(window, font);
-        mainMenuMusic.setVolume(static_cast<float>(g_musicOn) * 50);
+        mainMenuMusic.setVolume(g_musicOn * 50);
         break;
 
     case GameState::Tutorials:
-        mainMenuMusic.setVolume(static_cast<float>(g_musicOn) * 50);
+        mainMenuMusic.setVolume(g_musicOn * 50);
         currentState = std::make_unique<TutorialState>(window, font);
         break;
     case GameState::Saving:
-        mainMenuMusic.setVolume(static_cast<float>(g_musicOn) * 50);
+        mainMenuMusic.setVolume(g_musicOn * 50);
         currentState = std::make_unique<SaveState>(window, font);
         break;
     }

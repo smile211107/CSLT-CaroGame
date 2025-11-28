@@ -150,6 +150,8 @@ void TwoPlayerState::handleEvent(const sf::Event& event) {
 
                 cntInput = 0;
                 previousState = GameState::NewGame;
+                player1Score = 0;
+                player2Score = 0;
                 nextState = GameState::Playing;
 
             }

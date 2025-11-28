@@ -3,6 +3,7 @@
 #include "ThreePlayerState.h"
 #include "Button.h"
 #include "Game.h"
+#include "GamePlay.h"
 #include <iostream>
 #include <memory>
 using namespace std;
@@ -146,6 +147,9 @@ void ThreePlayerState::handleEvent(const sf::Event& event) {
             if (cntInputs == 3) {
                 cntInputs %= 3;
                 previousState = GameState::NewGame;
+                player1Score = 0;
+                player2Score = 0;
+                player3Score = 0;
                 nextState = GameState::Playing;
 
             }

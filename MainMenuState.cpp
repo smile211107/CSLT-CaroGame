@@ -1,5 +1,6 @@
 ﻿#include "MainMenuState.h"
 #include "GameState.h"
+#include "GamePlay.h"
 #include "Button.h"
 #include "NewGameState.h" 
 #include "SettingsState.h"
@@ -49,6 +50,7 @@ MainMenuState::MainMenuState(sf::RenderWindow& window, sf::Font& font)
     if (!buttonExitTexture.loadFromFile("Assets/image/"+ngonngu[g_language]+"/exit-button.png")) {
 
     }
+    track.clear();
     buttonNewGame = std::make_unique<Button>(buttonNewGameTexture,
         sf::Vector2f(window.getSize().x / 2.0f, window.getSize().y * 0.5f + (GAP * 0)));
     buttonLoadGame = std::make_unique<Button>(buttonLoadGameTexture,
@@ -61,7 +63,6 @@ MainMenuState::MainMenuState(sf::RenderWindow& window, sf::Font& font)
         sf::Vector2f(window.getSize().x / 2.0f, window.getSize().y * 0.5f + (GAP * 4)));
     buttonExit = std::make_unique<Button>(buttonExitTexture,
         sf::Vector2f(window.getSize().x / 2.0f, window.getSize().y * 0.5f + (GAP * 5)));
-
     menuButtons.push_back(move(buttonNewGame));
     menuButtons.push_back(move(buttonLoadGame));
     menuButtons.push_back(move(buttonTutorials));

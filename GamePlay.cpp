@@ -287,11 +287,10 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
     if (!textureVToken->loadFromFile("Assets/image/player3-token.png")) {
         std::cout << "khong tai duoc card 3";
     }
-    if (g_musicOn)
-        if (!gameplayMusic.openFromFile("assets/audio/gameplayAudio.mp3")) {
+    if (!gameplayMusic.openFromFile("assets/audio/gameplayAudio.mp3")) {
 
-            std::cout << "khong tai duoc am thanh";
-        }
+        std::cout << "khong tai duoc am thanh";
+    }
     endBackgroundSprite->setPosition({ window.getSize().x * 0.5f + 100, window.getSize().y * 0.6f });
     spriteCard1 = std::make_unique<sf::Sprite>(*(textureCard1));
     spriteCard2 = std::make_unique<sf::Sprite>(*(textureCard2));
@@ -334,7 +333,7 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
 
 
     gameplayMusic.setLooping(true);
-    gameplayMusic.setVolume(static_cast<float>(g_musicOn) * 30);
+    gameplayMusic.setVolume(g_musicOn * 30);
     gameplayMusic.play();
 
     gameplayBackgroundTexture = std::make_unique<sf::Texture>();
@@ -416,7 +415,7 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
     else firstGame = false;
     if ((previousState == GameState::LoadGame || previousState == GameState::Saving) && track.size() > 0)
     {
-        cout << track.size() << '\n';
+        //cout << track.size() << '\n';
         for (int i = 0; i < track.size(); i++)
         {
             std::unique_ptr<sf::Sprite> newPiece;
@@ -498,7 +497,7 @@ void Gameplay::handleEvent(const sf::Event& event) {
     {
         for (int i = 0; i < track.size(); i++) mainGameBoard[track[i].first.first][track[i].first.second] = track[i].second;
     }
-    if (previousState == GameState::LoadGame) cout << track.size() << '\n';
+    //if (previousState == GameState::LoadGame) cout << track.size() << '\n';
     if (event.is<sf::Event::Closed>()) window.close();
     if (track.size() > 0) currentPlayer = track[track.size() - 1].second + 1;
     if (currentPlayer > gameMode) currentPlayer -= gameMode;
