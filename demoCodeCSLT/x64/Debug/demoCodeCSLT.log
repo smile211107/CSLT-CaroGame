@@ -1,0 +1,6 @@
+﻿  GamePlay.cpp
+K:\CSLT-CaroGame-addSaveLoad\GamePlay.cpp(336,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+K:\CSLT-CaroGame-addSaveLoad\GamePlay.cpp(502,23): warning C4553: '==': result of expression not used; did you intend '='?
+K:\CSLT-CaroGame-addSaveLoad\GamePlay.cpp(561,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+K:\CSLT-CaroGame-addSaveLoad\GamePlay.cpp(663,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  demoCodeCSLT.vcxproj -> K:\CSLT-CaroGame-addSaveLoad\x64\Debug\demoCodeCSLT.exe
