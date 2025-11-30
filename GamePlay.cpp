@@ -494,6 +494,7 @@ void Gameplay::newGame() {
             mainGameBoard[i][j] = 0;
         }
     }
+    std::cout << "DA RESET\n";
     currentPlayer = ((player1Score + player2Score + ((gameMode - 2) * player3Score)) % gameMode) + 1;
     //if (currentPlayer > gameMode) currentPlayer -= gameMode;
     isGameOver = 0;
@@ -521,7 +522,7 @@ GameState Gameplay::getNextState() {
 }
 
 void Gameplay::handleEvent(const sf::Event& event) {
-    cout << currentPlayer << '\n';
+    //cout << currentPlayer << '\n';
     if ((previousState == GameState::Saving || previousState == GameState::LoadGame) && track.size() > 0)
     {
         for (int i = 0; i < track.size(); i++) mainGameBoard[track[i].first.first][track[i].first.second] = track[i].second;
@@ -582,6 +583,7 @@ void Gameplay::handleEvent(const sf::Event& event) {
                 }
                 if (pauseButtons[2]->isMouseOver(mousePos)) {
                     isPause = 0;
+                    previousState = GameState::NewGame;
                     firstGame = false;
                     line.setSize({ 0,0 });
                     newGame();
@@ -696,6 +698,7 @@ void Gameplay::handleEvent(const sf::Event& event) {
                 }
                 else if (selectedButtonIndex == 2) {
                     firstGame = false;
+                    previousState = GameState::NewGame;
                     line.setSize({ 0,0 });
                     newGame();
                     pieces.clear();
