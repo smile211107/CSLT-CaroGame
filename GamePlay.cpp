@@ -185,9 +185,9 @@ int checkWin(int y, int x, int checkNum)
 Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
     : window(window),
     font(font),
-    score1(font,"Turn: 0\n" + playerNames[1] + ": " + to_string(player1Score), 48),
-    score2(font,"Turn: 0\n" + playerNames[2] + ": " + to_string(player2Score), 48),
-    score3(font,"Turn: 0\n" + playerNames[3] + ": " + to_string(player3Score), 48)
+    score1(font, playerNames[1] + "\nScore: " + to_string(player1Score) + "     Turn: " + to_string(cntTurn1), 48),
+    score2(font, playerNames[2] + "\nScore: " + to_string(player2Score) + "     Turn: " + to_string(cntTurn2), 48),
+    score3(font, playerNames[3] + "\nScore: " + to_string(player3Score) + "     Turn: " + to_string(cntTurn3), 48)
 
 
 {
@@ -421,13 +421,15 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
             std::unique_ptr<sf::Sprite> newPiece;
             if (track[i].second == 1) {
                 newPiece = std::make_unique<sf::Sprite>(*textureXIcon);
-
+                cntTurn1++;
             }
             else if (track[i].second == 2) {
                 newPiece = std::make_unique<sf::Sprite>(*textureOIcon);
+                cntTurn2++;
             }
             else {
                 newPiece = std::make_unique<sf::Sprite>(*textureVIcon);
+                cntTurn3++;
             }
 
 
@@ -435,6 +437,9 @@ Gameplay::Gameplay(sf::RenderWindow& window, sf::Font& font)
             pieces.push_back(std::move(newPiece));
             mainGameBoard[track[i].first.first][track[i].first.second] = track[i].second;
         }
+        score1.setString(playerNames[1] + "\nScore: " + to_string(player1Score) + "     Turn: " + to_string(cntTurn1));
+        score2.setString(playerNames[2] + "\nScore: " + to_string(player2Score) + "     Turn: " + to_string(cntTurn2));
+        score3.setString(playerNames[3] + "\nScore: " + to_string(player3Score) + "     Turn: " + to_string(cntTurn3));
     }
 
     line.setSize({ 0,0 });
@@ -761,8 +766,8 @@ void Gameplay::handleEvent(const sf::Event& event) {
                     if (currentPlayer == 1)
                     {
                         ++cntTurn1;
-                        score1.setString("turn: " + to_string(cntTurn1) + '\n' + playerNames[1] + ": " + to_string(player1Score));
-
+                        score1.setString(playerNames[1] + "\nScore: " + to_string(player1Score) + "     Turn: " + to_string(cntTurn1));
+                        
 
                     }
 
@@ -770,13 +775,13 @@ void Gameplay::handleEvent(const sf::Event& event) {
                     {
 
                         ++cntTurn2;
-                        score2.setString("turn: " + to_string(cntTurn2) + '\n' + playerNames[2] + ": " + to_string(player2Score));
+                        score2.setString(playerNames[2] + "\nScore: " + to_string(player2Score) + "     Turn: " + to_string(cntTurn2));
 
                     }
                     else if (currentPlayer == 3) {
 
                         ++cntTurn3;
-                        score3.setString("turn: " + to_string(cntTurn3) + '\n' + playerNames[3] + ": " + to_string(player3Score));
+                        score3.setString(playerNames[3] + "\nScore: " + to_string(player3Score) + "     Turn: " + to_string(cntTurn3));
 
                     }
                     track.push_back({ {y,x},currentPlayer });
@@ -818,7 +823,7 @@ void Gameplay::handleEvent(const sf::Event& event) {
                         if (currentPlayer == 1)
                         {
                             player1Score++;
-                            score1.setString("Turn: \n" + playerNames[1] + ": " + to_string(player1Score));
+                            score1.setString(playerNames[1] + "\nScore: " + to_string(player1Score) + "     Turn: " + to_string(cntTurn1));
                             result = 1;
 
                         }
@@ -827,14 +832,14 @@ void Gameplay::handleEvent(const sf::Event& event) {
                         {
                             player2Score++;
 
-                            score2.setString("Turn: \n" + playerNames[2] + ": " + to_string(player2Score));
+                            score2.setString(playerNames[2] + "\nScore: " + to_string(player2Score) + "     Turn: " + to_string(cntTurn2));
                             result = 2;
                         }
                         else if (currentPlayer == 3)
                         {
                             player3Score++;
 
-                            score3.setString("Turn: \n" + playerNames[3] + ": " + to_string(player3Score));
+                            score3.setString(playerNames[3] + "\nScore: " + to_string(player3Score) + "     Turn: " + to_string(cntTurn3));
                             result = 3;
                         }
                         cntTurn1 = 0;

@@ -130,7 +130,7 @@ private:
     sf::Music playSound;
 
     sf::Music playSoundWrong;
-    int cntTurn1, cntTurn2, cntTurn3;
+    int cntTurn1 = 0, cntTurn2 = 0, cntTurn3 = 0;
 };
 extern int result;
 extern vector<pair<pair<int, int>, int>> track;
