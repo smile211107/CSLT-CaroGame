@@ -1,6 +1,26 @@
 ﻿  GamePlay.cpp
-E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(336,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(513,23): warning C4553: '==': result of expression not used; did you intend '='?
-E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(572,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(674,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(253,90): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(253,90): warning C4244:         with
+E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(253,90): warning C4244:         [
+E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(253,90): warning C4244:             T=float
+E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(253,90): warning C4244:         ]
+E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(255,90): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(255,90): warning C4244:         with
+E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(255,90): warning C4244:         [
+E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(255,90): warning C4244:             T=float
+E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(255,90): warning C4244:         ]
+E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(257,90): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(257,90): warning C4244:         with
+E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(257,90): warning C4244:         [
+E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(257,90): warning C4244:             T=float
+E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(257,90): warning C4244:         ]
+E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(356,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(527,23): warning C4553: '==': result of expression not used; did you intend '='?
+E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(586,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\GamePlay.cpp(688,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+demoCodeCSLT\x64\Debug\AboutState.obj : warning LNK4042: object specified more than once; extras ignored
+demoCodeCSLT\x64\Debug\Game.obj : warning LNK4042: object specified more than once; extras ignored
+demoCodeCSLT\x64\Debug\MainMenuState.obj : warning LNK4042: object specified more than once; extras ignored
+demoCodeCSLT\x64\Debug\NewGameState.obj : warning LNK4042: object specified more than once; extras ignored
+demoCodeCSLT\x64\Debug\PlayerNameInput.obj : warning LNK4042: object specified more than once; extras ignored
   demoCodeCSLT.vcxproj -> E:\25C10_FITUS\Year_1\Co_so_lap_trinh\Git\CSLT-CaroGame\x64\Debug\demoCodeCSLT.exe
