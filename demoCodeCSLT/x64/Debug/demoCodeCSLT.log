@@ -1,0 +1,21 @@
+﻿  GamePlay.cpp
+D:\CSLT-CaroGame-fixBug\CSLT-CaroGame-fixBug\GamePlay.cpp(253,90): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+D:\CSLT-CaroGame-fixBug\CSLT-CaroGame-fixBug\GamePlay.cpp(253,90): warning C4244:         with
+D:\CSLT-CaroGame-fixBug\CSLT-CaroGame-fixBug\GamePlay.cpp(253,90): warning C4244:         [
+D:\CSLT-CaroGame-fixBug\CSLT-CaroGame-fixBug\GamePlay.cpp(253,90): warning C4244:             T=float
+D:\CSLT-CaroGame-fixBug\CSLT-CaroGame-fixBug\GamePlay.cpp(253,90): warning C4244:         ]
+D:\CSLT-CaroGame-fixBug\CSLT-CaroGame-fixBug\GamePlay.cpp(255,90): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+D:\CSLT-CaroGame-fixBug\CSLT-CaroGame-fixBug\GamePlay.cpp(255,90): warning C4244:         with
+D:\CSLT-CaroGame-fixBug\CSLT-CaroGame-fixBug\GamePlay.cpp(255,90): warning C4244:         [
+D:\CSLT-CaroGame-fixBug\CSLT-CaroGame-fixBug\GamePlay.cpp(255,90): warning C4244:             T=float
+D:\CSLT-CaroGame-fixBug\CSLT-CaroGame-fixBug\GamePlay.cpp(255,90): warning C4244:         ]
+D:\CSLT-CaroGame-fixBug\CSLT-CaroGame-fixBug\GamePlay.cpp(257,90): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+D:\CSLT-CaroGame-fixBug\CSLT-CaroGame-fixBug\GamePlay.cpp(257,90): warning C4244:         with
+D:\CSLT-CaroGame-fixBug\CSLT-CaroGame-fixBug\GamePlay.cpp(257,90): warning C4244:         [
+D:\CSLT-CaroGame-fixBug\CSLT-CaroGame-fixBug\GamePlay.cpp(257,90): warning C4244:             T=float
+D:\CSLT-CaroGame-fixBug\CSLT-CaroGame-fixBug\GamePlay.cpp(257,90): warning C4244:         ]
+D:\CSLT-CaroGame-fixBug\CSLT-CaroGame-fixBug\GamePlay.cpp(356,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\CSLT-CaroGame-fixBug\CSLT-CaroGame-fixBug\GamePlay.cpp(532,23): warning C4553: '==': result of expression not used; did you intend '='?
+D:\CSLT-CaroGame-fixBug\CSLT-CaroGame-fixBug\GamePlay.cpp(603,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\CSLT-CaroGame-fixBug\CSLT-CaroGame-fixBug\GamePlay.cpp(715,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  demoCodeCSLT.vcxproj -> D:\CSLT-CaroGame-fixBug\CSLT-CaroGame-fixBug\x64\Debug\demoCodeCSLT.exe

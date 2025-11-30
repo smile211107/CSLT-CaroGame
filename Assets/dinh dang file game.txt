@@ -1,0 +1,8 @@
+// Ten file
+// Thoi gian luu
+// So luong nguoi choi
+// player1Score player2Score player3Score
+// pieces.size() //so luong o da danh
+// y x mainGameBoard[y][x] vi tri tung o va gia tri tai o do
+...
+...
