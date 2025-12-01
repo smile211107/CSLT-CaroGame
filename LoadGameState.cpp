@@ -15,9 +15,7 @@ void align(TextButton& button)
     button.buttonText.setCharacterSize(textsize);
     sf::FloatRect textBounds = button.buttonText.getLocalBounds();
     button.buttonText.setOrigin({ textBounds.size.x / 2.0f, textBounds.size.y / 2.0f });
-    //button.buttonText.setPosition({ button.buttonShape.getPosition().x + (button.buttonShape.getSize().x / 2.0f) , button.buttonShape.getPosition().y + (button.buttonShape.getSize().y / 2.0f) });
 }
-// Sử dụng lại các biến toàn cục từ SettingsState (nếu cần đồng bộ ngôn ngữ)
 extern bool g_language;
 extern std::string ngonngu[2];
 
@@ -29,11 +27,9 @@ LoadState::LoadState(sf::RenderWindow& window, sf::Font& font)
     fileNo4("File not found",font,{1500.0F, 60.0F}, {window.getSize().x / 2.0f, window.getSize().y * 0.4f + gap * 3 }),
     fileNo5("File not found",font,{1500.0F, 60.0F}, {window.getSize().x / 2.0f, window.getSize().y * 0.4f + gap * 4 }) 
 {
-    nextState = GameState::LoadGame; // Mặc định giữ nguyên state
+    nextState = GameState::LoadGame;
     selection = 1;
-    // 1. Load Background (Tương tự SettingsState)
     backgroundTexture = std::make_unique<sf::Texture>();
-    // Giả sử bạn có ảnh nền cho Load Game, nếu không có thể dùng chung settings-background
     if (!backgroundTexture->loadFromFile("Assets/Image/" + ngonngu[g_language] + "/loadGame-background.png")) {
         std::cerr << " Khong the tai background load game\n";
     }
@@ -45,20 +41,12 @@ LoadState::LoadState(sf::RenderWindow& window, sf::Font& font)
     );
     backgroundSprite->setScale(scale);
 
-    // 2. Load nút Back
     if (!buttonBackTexture.loadFromFile("Assets/image/" + ngonngu[g_language] + "/return-button.png")) {
         std::cout << "Khong the mo return-button\n";
     }
-    // Đặt nút Back ở dưới cùng
     buttonBack = std::make_unique<Button>(buttonBackTexture,
         sf::Vector2f(window.getSize().x / 2.f, window.getSize().y * 0.9f));
 
-    // 3. Load texture cho thanh slot save (giả sử bạn có ảnh thanh ngang)
-    // Nếu chưa có, bạn có thể vẽ tạm 1 hình chữ nhật hoặc dùng lại texture button nhưng scale ra
-  
-    
-    
-    // 4. Đọc và xử lý file save
     loadSavedFilesFromDisk();
     setupUISlots();
 }
@@ -67,29 +55,25 @@ void LoadState::loadSavedFilesFromDisk() {
     saveFiles.clear();
     std::string path = "saved";
 
-    // Kiểm tra thư mục tồn tại không
     if (!fs::exists(path)) {
         fs::create_directory(path);
         return;
     }
 
-    // Duyệt thư mục
     for (const auto& entry : fs::directory_iterator(path)) {
         if (entry.path().extension() == ".txt") {
             SaveFileInfo info;
             info.filename = entry.path().filename().string();
 
-            // Lấy thời gian sửa đổi để sắp xếp
             auto ftime = fs::last_write_time(entry);
             info.timestamp = ftime.time_since_epoch().count();
 
-            // Đọc nội dung file
             std::ifstream inFile(entry.path());
             if (inFile.is_open()) {
-                std::getline(inFile, info.gameName); // Dòng 1: Tên màn chơi
-                std::getline(inFile, info.date);     // Dòng 2: Ngày tạo
-                inFile >> info.mode;                 // Dòng 3: Chế độ
-                inFile.ignore(); // Bỏ qua ký tự xuống dòng sau số
+                std::getline(inFile, info.gameName); 
+                std::getline(inFile, info.date);     
+                inFile >> info.mode;                 
+                inFile.ignore(); 
                 std::getline(inFile, playerNames[1]);
                 inFile >> player1Score;
                 inFile.ignore();
@@ -102,7 +86,6 @@ void LoadState::loadSavedFilesFromDisk() {
                     std::getline(inFile, playerNames[3]);
                     inFile >> player3Score;
                     inFile.ignore();
-                    //cout << player3Score << '\n';
                     info.score += " / " + to_string(player3Score);
                 }
                 saveFiles.push_back(info);
@@ -111,12 +94,10 @@ void LoadState::loadSavedFilesFromDisk() {
         }
     }
 
-    // Sắp xếp theo thời gian mới nhất -> cũ nhất
     std::sort(saveFiles.begin(), saveFiles.end(), [](const SaveFileInfo& a, const SaveFileInfo& b) {
         return a.timestamp > b.timestamp;
         });
 
-    // Chỉ giữ lại 5 file gần nhất
     if (saveFiles.size() > 5) {
         saveFiles.resize(5);
     }
@@ -124,13 +105,9 @@ void LoadState::loadSavedFilesFromDisk() {
 }
 
 void LoadState::setupUISlots() {
-    float startY = window.getSize().y * 0.4f; // Vị trí bắt đầu danh sách
+    float startY = window.getSize().y * 0.4f; 
 
     for (size_t i = 0; i < saveFiles.size(); ++i) {
-        // Tạo Button cho mỗi file (dùng làm nền click)
-        // Giả sử kích thước slot là rộng, đặt ở giữa màn hình
-
-        // Tạo Text hiển thị thông tin: "Tên | Ngày | Mode | Tỉ số"
         std::string modeStr = (saveFiles[i].mode == 2) ? "2 players" : "3 players"; // Ví dụ convert mode
         std::string displayStr = saveFiles[i].gameName + "                    " +
             saveFiles[i].date + "                     " +
@@ -142,9 +119,7 @@ void LoadState::setupUISlots() {
         else if (i==2) fileNo3.buttonText.setString(displayStr);
         else if (i==3) fileNo4.buttonText.setString(displayStr);
         else if (i==4) fileNo5.buttonText.setString(displayStr);
-        text.setFillColor(sf::Color::White); // Hoặc màu đen tùy background
-
-        // Căn giữa text vào button
+        text.setFillColor(sf::Color::White); 
         sf::FloatRect textRect = text.getLocalBounds();
         text.setOrigin({ textRect.position.x + textRect.size.x / 2.0f,
             textRect.position.y + textRect.size.y / 2.0f });
@@ -229,12 +204,10 @@ void LoadState::handleEvent(const sf::Event& event) {
                 inFile >> player3Score; inFile.ignore();
             }
             inFile >> moves;
-            //cout << playerNames[1] << '-' << player1Score << ' ' << playerNames[2] << ' ' << player2Score << ' ' << playerNames[3] << ' ' << player3Score << ' ' << '\n';
             for (int i = 0; i < moves; i++)
             {
                 inFile >> y >> x >> val;
                 track.push_back({ {y,x},val });
-                //std::cout << "===" << track.size() << '\n';
             }
             previousState = GameState::LoadGame;
             nextState = GameState::Playing;
@@ -247,19 +220,15 @@ void LoadState::handleEvent(const sf::Event& event) {
             sf::Vector2f mousePos = window.mapPixelToCoords(
                 { mouseEvent->position.x, mouseEvent->position.y });
 
-            // 1. Check nút Back
             if (buttonBack->isMouseOver(mousePos)) {
-                nextState = GameState::MainMenu; // Quay về Menu
+                nextState = GameState::MainMenu;
             }
 
-            // 2. Check click vào các slot save
             for (size_t i = 0; i < slotButtons.size(); ++i) {
                 if (slotButtons[i]->isMouseOver(mousePos)) {
                     selectedFile = saveFiles[i].filename;
                     std::cout << "Loading file: " << selectedFile << std::endl;
 
-                    // Chuyển sang State chơi game (hoặc State xử lý load cụ thể)
-                    // Bạn cần logic bên GamePlay để đọc 'selectedFile' này
                     nextState = GameState::Playing;
                 }
             }
@@ -276,14 +245,6 @@ void LoadState::update(sf::Vector2f mousePos) {
 
 void LoadState::render(sf::RenderTarget& target) {
     target.draw(*backgroundSprite);
-
-    // Vẽ danh sách các slot
-    /*for (auto& btn : slotButtons) {
-        btn->render(target);
-    }
-    for (auto& txt : slotTexts) {
-        target.draw(txt);
-    }*/
 
     buttonBack->render(target);
     fileNo1.render(target);
