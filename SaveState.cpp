@@ -143,24 +143,7 @@ void SaveState::handleEvent(const sf::Event& event) {
                 selectedButton = 0;
             }
 
-            /*else {
-                bool inputClicked = false;
-
-                for (int i = 0; i < menuInputs.size(); ++i) {
-                    if (menuInputs[i]->checkClick(mousePos)) {
-                        selectedButtonIndex = i;
-                        updateActiveInput();
-                        inputClicked = true;
-                        break;
-                    }
-                }
-
-
-                if (!inputClicked) {
-                    user1.setActive(false);
-                    user2.setActive(false);
-                }
-            }*/
+            
         }
     }
 }
