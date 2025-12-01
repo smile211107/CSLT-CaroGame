@@ -59,12 +59,7 @@ void TextButton::update(sf::Vector2f mousePos) {
         buttonShape.setFillColor(sf::Color(255, 0, 0, static_cast<uint8_t>(400)));
     }
 }
-// void Button::setSelected(bool selected)
-// {
-//     isSelected = selected;
-// }
 
-// demo change language button
 void TextButton::setSelected(bool selected) {
     this->isSelected = selected;
     if (selected)
