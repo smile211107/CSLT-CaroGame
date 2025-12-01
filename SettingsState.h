@@ -7,7 +7,6 @@
 using namespace std;
 
 
-// Biến toàn cục cho trạng thái nhạc
 extern bool g_musicOn;
 extern bool g_soundOn;
 extern bool g_language;
@@ -42,7 +41,6 @@ private:
 
 
 public:
-    // Constructor không cần truyền musicOn nữa
     SettingsState(sf::RenderWindow& window, sf::Font& font);
 
     void handleEvent(const sf::Event& event) override;
