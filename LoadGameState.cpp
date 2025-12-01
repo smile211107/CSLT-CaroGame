@@ -23,11 +23,11 @@ extern std::string ngonngu[2];
 
 LoadState::LoadState(sf::RenderWindow& window, sf::Font& font)
     : window(window), font(font),
-    fileNo1("file 1",font,{1500.0F, 60.0F}, {window.getSize().x / 2.0f, window.getSize().y * 0.4f}),
-    fileNo2("file 2",font,{1500.0F, 60.0F}, {window.getSize().x / 2.0f, window.getSize().y * 0.4f + gap}),
-    fileNo3("file 3",font,{1500.0F, 60.0F}, {window.getSize().x / 2.0f, window.getSize().y * 0.4f + gap * 2}),
-    fileNo4("file 4",font,{1500.0F, 60.0F}, {window.getSize().x / 2.0f, window.getSize().y * 0.4f + gap * 3 }),
-    fileNo5("file 5",font,{1500.0F, 60.0F}, {window.getSize().x / 2.0f, window.getSize().y * 0.4f + gap * 4 }) 
+    fileNo1("File not found",font,{1500.0F, 60.0F}, {window.getSize().x / 2.0f, window.getSize().y * 0.4f}),
+    fileNo2("File not found",font,{1500.0F, 60.0F}, {window.getSize().x / 2.0f, window.getSize().y * 0.4f + gap}),
+    fileNo3("File not found",font,{1500.0F, 60.0F}, {window.getSize().x / 2.0f, window.getSize().y * 0.4f + gap * 2}),
+    fileNo4("File not found",font,{1500.0F, 60.0F}, {window.getSize().x / 2.0f, window.getSize().y * 0.4f + gap * 3 }),
+    fileNo5("File not found",font,{1500.0F, 60.0F}, {window.getSize().x / 2.0f, window.getSize().y * 0.4f + gap * 4 }) 
 {
     nextState = GameState::LoadGame; // Mặc định giữ nguyên state
     selection = 1;
