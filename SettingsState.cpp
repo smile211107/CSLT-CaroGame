@@ -5,7 +5,6 @@
 const sf::Vector2f BUTTON_SIZE = { 400.f, 60.f };
 const float GAP = 130.f;
 
-// Định nghĩa biến toàn cục
 bool g_musicOn = true;
 bool g_soundOn = true;
 bool g_language = true; // true = English, false = Vietnamese
@@ -63,11 +62,10 @@ SettingsState::SettingsState(sf::RenderWindow& window, sf::Font& font)
     // Load background
     backgroundTexture = std::make_unique<sf::Texture>();
     if (!backgroundTexture->loadFromFile("Assets/Image/" + ngonngu[g_language] + "/settings-background.png")) {
-        std::cerr << "⚠️ Không thể tải background.png\n";
+        std::cerr << "Không thể tải background.png\n";
     }
     backgroundSprite = std::make_unique<sf::Sprite>(*backgroundTexture);
 
-    // Scale background để vừa màn hình
     sf::Vector2f scale(
         static_cast<float>(window.getSize().x) / backgroundTexture->getSize().x,
         static_cast<float>(window.getSize().y) / backgroundTexture->getSize().y
@@ -99,7 +97,7 @@ void SettingsState::handleEvent(const sf::Event& event) {
         }
         else if (key->scancode == sf::Keyboard::Scancode::Enter) {
             if (selectedIdx == 0) {
-                g_musicOn = !g_musicOn;  // cập nhật global variable
+                g_musicOn = !g_musicOn;  
                 // buttonMusic.setLabel("Music: " + std::string(g_musicOn ? "ON" : "OFF"));
                 if (g_musicOn) {
                     buttonSettings[0]->setTexture(onMusicTexture);
@@ -136,9 +134,8 @@ void SettingsState::handleEvent(const sf::Event& event) {
             sf::Vector2f mousePos = window.mapPixelToCoords(
                 { mouseEvent->position.x, mouseEvent->position.y });
 
-            // Toggle nhạc
             if (buttonSettings[0]->isMouseOver(mousePos)) {
-                g_musicOn = !g_musicOn;  // cập nhật global variable
+                g_musicOn = !g_musicOn;  
                 // buttonMusic.setLabel("Music: " + std::string(g_musicOn ? "ON" : "OFF"));
                 if (g_musicOn) {
                     buttonSettings[0]->setTexture(onMusicTexture);
@@ -148,8 +145,6 @@ void SettingsState::handleEvent(const sf::Event& event) {
                 }
             }
 
-            // Quay về menu chính
-             // Toggle sound effect
             if (buttonSettings[1]->isMouseOver(mousePos)) {
                 g_soundOn = !g_soundOn;
                 buttonSettings[1]->setTexture(g_soundOn ? onSoundTexture : offSoundTexture);
@@ -196,5 +191,5 @@ GameState SettingsState::getNextState() {
 }
 
 bool SettingsState::getMusicSetting() const {
-    return g_musicOn; // trả về global variable
+    return g_musicOn; 
 }
