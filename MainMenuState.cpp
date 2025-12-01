@@ -7,7 +7,6 @@
 #include "State.h"
 #include <iostream>
 
-// 1. XÓA các hằng số hard-coded (CENTER_X, START_Y)
 const sf::Vector2f BUTTON_SIZE = { 400.0F, 60.f };
 const float GAP = 90.0f;
 
@@ -16,14 +15,7 @@ MainMenuState::MainMenuState(sf::RenderWindow& window, sf::Font& font)
     font(font)
 
 
-    // 2. TÍNH TOÁN VỊ TRÍ ĐỘNG (DÙNG window.getSize())
-    /*buttonNewGame(buttonNewGameTexture, { window.getSize().x / 2.0f, window.getSize().y * 0.5f + (GAP * 0) }),
-    buttonLoadGame(buttonLoadGameTexture, { window.getSize().x / 2.0f, window.getSize().y * 0.5f + (GAP * 1) }),
-    buttonTutorials(buttonTutorialsTexture, { window.getSize().x / 2.0f, window.getSize().y * 0.5f + (GAP * 2) }),
-    buttonAboutUs(buttonAboutUsTexture, { window.getSize().x / 2.0f, window.getSize().y * 0.5f + (GAP * 3) }),
-    buttonSettings(buttonSettingsTexture, { window.getSize().x / 2.0f, window.getSize().y * 0.5f + (GAP * 4) }),
-    buttonExit(buttonExitTexture, { window.getSize().x / 2.0f, window.getSize().y * 0.5f + (GAP * 5) })*/
-
+  
 
 {
     //buttonNewGameTexture = std::make_unique<sf::Texture>();
@@ -139,26 +131,7 @@ void MainMenuState::handleEvent(const sf::Event& event) {
         }
         else if (key->scancode == sf::Keyboard::Scancode::Enter) {
 
-            //auto& currentButton = menuButtons[selectedButtonIndex];
-
-            /*if (currentButton == buttonNewGame) {
-                nextState = GameState::NewGame;
-            }
-            else if (currentButton == buttonExit) {
-                nextState = GameState::Exiting;
-            }
-            else if (currentButton == buttonAboutUs) {
-                nextState = GameState::AboutUs;
-            }
-            else if (currentButton == buttonTutorials) {
-                nextState = GameState::Tutorials;
-            }
-            else if (currentButton == buttonLoadGame) {
-                nextState = GameState::LoadGame;
-            }
-            else if (currentButton == buttonSettings) {
-                nextState = GameState::Settings;
-            }*/
+            
 
             if (selectedButtonIndex == 0) {
                 nextState = GameState::NewGame;
@@ -191,12 +164,7 @@ void MainMenuState::handleEvent(const sf::Event& event) {
 }
 
 void MainMenuState::update(sf::Vector2f mousePos) {
-    /*buttonNewGame->update(mousePos);
-    buttonLoadGame->update(mousePos);
-    buttonTutorials->update(mousePos);
-    buttonAboutUs->update(mousePos);
-    buttonSettings->update(mousePos);
-    buttonExit->update(mousePos);*/
+   
     for (auto& button : menuButtons) {
         if (button != nullptr) button->update(mousePos);
     }
@@ -206,12 +174,7 @@ void MainMenuState::render(sf::RenderTarget& target) {
 
     target.draw(*(menuBackgroundSprite));
 
-    /*buttonNewGame->render(target);
-    buttonLoadGame->render(target);
-    buttonTutorials->render(target);
-    buttonAboutUs->render(target);
-    buttonSettings->render(target);
-    buttonExit->render(target);*/
+   
     for (auto& button : menuButtons) {
         if (button != nullptr) button->render(target);
     }
