@@ -77,9 +77,8 @@ void readFile(string NAME)
 void showFiles()
 {
 	try {
-		// Iterate through directory entries
 		for (const auto& entry : fs::directory_iterator(PATH)) {
-			std::cout << entry.path() << std::endl;  // Print full path
+			std::cout << entry.path() << std::endl; 
 		}
 	}
 	catch (const fs::filesystem_error& e) {
